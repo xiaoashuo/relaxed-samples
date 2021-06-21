@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lovecyy</groupId>
+        <artifactId>relaxed</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.lovecyy</groupId>
+    <artifactId>relaxed-samples</artifactId>
+    <version>${reversion}</version>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <reversion>1.0.0-SNAPSHOT</reversion>
+    </properties>
+    <modules>
+      <module>relaxed-samples-base</module>
+    </modules>
+
+    <!--指定仓库地址-->
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>http://repo1.maven.org/maven2/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>national-trust</id>
+            <url>http://49.234.128.78/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+    </repositories>
+    <!--环境变量-->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profiles.active>dev</profiles.active>
+            </properties>
+            <activation>
+                <!-- 默认环境 -->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <profiles.active>uat</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profiles.active>prod</profiles.active>
+            </properties>
+        </profile>
+
+    </profiles>
+</project>
