@@ -4,9 +4,13 @@ import com.baomidou.dynamic.datasource.processor.DsHeaderProcessor;
 import com.baomidou.dynamic.datasource.processor.DsProcessor;
 import com.baomidou.dynamic.datasource.processor.DsSessionProcessor;
 import com.baomidou.dynamic.datasource.processor.DsSpelExpressionProcessor;
-import com.relaxed.common.datasource.config.DsRequestProcessor;
+
+import com.relaxed.common.datasource.processor.DsRequestProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 /**
  * @author Yakir
@@ -28,6 +32,11 @@ public class DynamicConfig {
         headerProcessor.setNextProcessor(sessionProcessor);
         sessionProcessor.setNextProcessor(spelExpressionProcessor);
         return requestProcessor;
+    }
+
+    @Bean
+    public DbPropertyProvider dbPropertyProvider(){
+        return new DbPropertyProvider();
     }
 
 }

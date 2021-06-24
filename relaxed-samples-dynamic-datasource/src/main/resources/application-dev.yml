@@ -4,7 +4,8 @@ spring:
     password: '123456'
     url: jdbc:mysql://127.0.0.1:3306/multi-datasource?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     queryDsSql:  SELECT * FROM `t_data_source`
-
+    rsk:
+      name: db_name
 
 jasypt:
   encryptor:
