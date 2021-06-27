@@ -26,6 +26,15 @@
         </dependency>
         <dependency>
             <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-spring-boot-starter-xss</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-spring-boot-starter-log</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lovecyy</groupId>
             <artifactId>relaxed-spring-boot-starter-job</artifactId>
         </dependency>
 

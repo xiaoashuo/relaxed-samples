@@ -15,6 +15,10 @@ spring:
       mail.smtp.socketFactory.fallback: false
 
 relaxed:
+  security:
+    xss:
+      enabled: true
+
   dingtalk:
     url: https://oapi.dingtalk.com/robot/send?access_token=b7152491511299a498d5887daf99fbc5b6c5dc5a1a721458752580a9626c7f979
     secret: SEC87dcc5c1d2b8a1d94a9cf81a67775aa8578987594a891bf51ce46fb4cf05a119
@@ -63,4 +67,6 @@ xxl:
       logpath: /data/applogs/xxl-job/jobhandler
       ### 执行器日志文件保存天数 [选填] ： 过期日志自动清理, 限制值大于等于3时生效; 否则, 如-1, 关闭自动清理功能；
       logretentiondays: 30
+
+
 
