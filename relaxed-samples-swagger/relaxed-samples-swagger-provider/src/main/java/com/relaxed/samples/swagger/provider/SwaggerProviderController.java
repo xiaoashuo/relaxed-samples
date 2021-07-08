@@ -3,10 +3,7 @@ package com.relaxed.samples.swagger.provider;
 import com.relaxed.common.core.result.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Yakir
@@ -38,7 +35,7 @@ public class SwaggerProviderController {
      */
     @ApiOperation("更新测试")
     @PutMapping
-    public R update(TestObj testObj){
+    public R update(@RequestBody TestObj testObj){
         return R.ok(new TestObj("更新测试",10,true));
     }
 }
