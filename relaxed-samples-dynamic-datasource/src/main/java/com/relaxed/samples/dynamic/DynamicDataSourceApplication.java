@@ -12,7 +12,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication(scanBasePackages = "com.relaxed")
 public class DynamicDataSourceApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(DynamicDataSourceApplication.class,args);
-    }
+
+	public static void main(String[] args) {
+		SpringApplication.run(DynamicDataSourceApplication.class, args);
+	}
+
 }

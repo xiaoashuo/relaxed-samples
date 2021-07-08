@@ -30,4 +30,11 @@ public class DynamicConfig {
         return requestProcessor;
     }
 
+    @Bean
+    public DbPropertyProvider dbPropertyProvider(){
+        return new DbPropertyProvider();
+    }
+
+
+
 }

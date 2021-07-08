@@ -1,5 +1,7 @@
 package com.relaxed.samples.controller;
 
+import com.relaxed.common.core.exception.BusinessException;
+import com.relaxed.common.core.result.SysResultCode;
 import com.relaxed.common.mail.model.MailSendInfo;
 import com.relaxed.common.mail.sender.MailSender;
 import lombok.RequiredArgsConstructor;

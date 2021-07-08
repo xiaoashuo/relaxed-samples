@@ -20,6 +20,7 @@
     </properties>
     <modules>
       <module>relaxed-samples-base</module>
+      <module>relaxed-samples-swagger</module>
       <module>relaxed-samples-dynamic-datasource</module>
     </modules>
 

@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: swagger-provider
+
+
+relaxed:
+  swagger:
+    title: Show Docs
+    group-name: Test
+    documentation-type: swagger_2
+    description:  接口服务Api文档
+    version: 0.0.1
+    license: Powered By Test
+    licenseUrl: http://www.test.cn/
+    terms-of-service-url: http://www.test.cn/
+    host: http://test-api:9090
+    contact:
+      name: test
+      email: test@foxmail.com
+      url: https://github.com/test
+    provider:
+      aggregator-origin: http://test-admin:8080
+    authorization:
+      name: login
+      token-url: http://www.baidu.com
+server:
+  port: 10020
