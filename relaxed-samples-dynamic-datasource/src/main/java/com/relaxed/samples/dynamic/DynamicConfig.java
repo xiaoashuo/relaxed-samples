@@ -18,23 +18,21 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DynamicConfig {
 
-    @Bean
-    public DsProcessor dsProcessor() {
-        DsRequestProcessor requestProcessor = new DsRequestProcessor();
-        DsHeaderProcessor headerProcessor = new DsHeaderProcessor();
-        DsSessionProcessor sessionProcessor = new DsSessionProcessor();
-        DsSpelExpressionProcessor spelExpressionProcessor = new DsSpelExpressionProcessor();
-        requestProcessor.setNextProcessor(headerProcessor);
-        headerProcessor.setNextProcessor(sessionProcessor);
-        sessionProcessor.setNextProcessor(spelExpressionProcessor);
-        return requestProcessor;
-    }
+	@Bean
+	public DsProcessor dsProcessor() {
+		DsRequestProcessor requestProcessor = new DsRequestProcessor();
+		DsHeaderProcessor headerProcessor = new DsHeaderProcessor();
+		DsSessionProcessor sessionProcessor = new DsSessionProcessor();
+		DsSpelExpressionProcessor spelExpressionProcessor = new DsSpelExpressionProcessor();
+		requestProcessor.setNextProcessor(headerProcessor);
+		headerProcessor.setNextProcessor(sessionProcessor);
+		sessionProcessor.setNextProcessor(spelExpressionProcessor);
+		return requestProcessor;
+	}
 
-    @Bean
-    public DbPropertyProvider dbPropertyProvider(){
-        return new DbPropertyProvider();
-    }
-
-
+	@Bean
+	public DbPropertyProvider dbPropertyProvider() {
+		return new DbPropertyProvider();
+	}
 
 }

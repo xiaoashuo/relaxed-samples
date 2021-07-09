@@ -23,18 +23,21 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Data
 public class TestObj {
-    /**
-     * 用户名
-     */
-    @ApiModelProperty("用户名")
-    @NotNull
-    private String userName;
-    /**
-     * 年龄
-     */
-    @ApiModelProperty(value = "年龄",required = true)
-    @Min(value = 2)
-    private Integer age;
 
-    private Boolean open;
+	/**
+	 * 用户名
+	 */
+	@ApiModelProperty("用户名")
+	@NotNull
+	private String userName;
+
+	/**
+	 * 年龄
+	 */
+	@ApiModelProperty(value = "年龄", required = true)
+	@Min(value = 2)
+	private Integer age;
+
+	private Boolean open;
+
 }

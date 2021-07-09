@@ -14,7 +14,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableSwagger2Provider
 @SpringBootApplication(scanBasePackages = "com.relaxed")
 public class SwaggerProviderApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(SwaggerProviderApplication.class,args);
-    }
+
+	public static void main(String[] args) {
+		SpringApplication.run(SwaggerProviderApplication.class, args);
+	}
+
 }

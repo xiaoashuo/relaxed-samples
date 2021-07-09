@@ -17,25 +17,26 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/provider")
 public class SwaggerProviderController {
 
-    /**
-     * 测试保存
-     * @param testObj
-     * @return
-     */
-    @ApiOperation(value = "测试保存" )
-    @PostMapping
-    public R save(TestObj testObj){
-       return R.ok(new TestObj("测试",10,true));
-    }
+	/**
+	 * 测试保存
+	 * @param testObj
+	 * @return
+	 */
+	@ApiOperation(value = "测试保存")
+	@PostMapping
+	public R save(TestObj testObj) {
+		return R.ok(new TestObj("测试", 10, true));
+	}
 
-    /**
-     * 更新测试
-     * @param testObj
-     * @return
-     */
-    @ApiOperation("更新测试")
-    @PutMapping
-    public R update(@RequestBody TestObj testObj){
-        return R.ok(new TestObj("更新测试",10,true));
-    }
+	/**
+	 * 更新测试
+	 * @param testObj
+	 * @return
+	 */
+	@ApiOperation("更新测试")
+	@PutMapping
+	public R update(@RequestBody TestObj testObj) {
+		return R.ok(new TestObj("更新测试", 10, true));
+	}
+
 }
