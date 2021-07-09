@@ -1,6 +1,5 @@
 package com.relaxed.samples.test;
 
-import com.relaxed.common.core.batch.BatchOps;
 import com.relaxed.common.core.batch.functions.BatchConsumer;
 import com.relaxed.common.core.batch.functions.BatchSupplier;
 import com.relaxed.common.core.batch.params.BatchConsumerParam;
