@@ -1,0 +1,46 @@
+package ${packageName}.${moduleName}.model.converter;
+
+import ${packageName}.${moduleName}.model.dto.${className}DTO;
+import ${packageName}.${moduleName}.model.entity.${className};
+import ${packageName}.${moduleName}.model.vo.${className}VO;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+import java.util.List;
+
+/**
+ * <p>
+ * ${comments} 转换器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${currentTime}
+ */
+@Mapper
+public interface ${className}Converter {
+
+    ${className}Converter INSTANCE= Mappers.getMapper(${className}Converter.class);
+
+    /**
+     * po -> vo
+     * @param ${lowerClassName} {@link ${className}}
+     * @return {@link ${className}VO}
+     */
+    ${className}VO poToVo(${className} ${lowerClassName});
+
+    /**
+     * dto -> po
+     * @param ${lowerClassName}DTO {@link ${className}DTO}
+     * @return {@link ${className}}
+     */
+    ${className} dtoToPo(${className}DTO ${lowerClassName}DTO);
+
+    /**
+     * po -> vos
+     * @param ${lowerClassName}Properties {@link List<${className}>}
+     * @return  {@link  List<${className}VO>}
+     */
+     List<${className}VO> poToVOs(List<${className}> ${lowerClassName}Properties);
+
+}

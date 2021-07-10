@@ -1,0 +1,29 @@
+package ${packageName}.${moduleName}.service;
+
+import ${packageName}.${moduleName}.model.dto.${className}DTO;
+import ${packageName}.${moduleName}.model.vo.${className}VO;
+import ${packageName}.${moduleName}.model.entity.${className};
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.relaxed.common.core.domain.PageParam;
+import com.relaxed.common.core.domain.PageResult;
+
+/**
+ * <p>
+ * ${comments} 业务层
+ * </p>
+ *
+ * @author ${author}
+ * @since  ${currentTime}
+ */
+public interface ${className}Service extends IService<${className}> {
+
+    /**
+     * 分页查询
+     * @param pageParam {@link PageParam}
+     * @param ${lowerClassName}DTO {@link ${className}DTO}
+     * @return {@link PageResult<${className}VO>}
+     */
+    PageResult<${className}VO> selectByPage(PageParam pageParam, ${className}DTO ${lowerClassName}DTO);
+
+}

@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: @artifactId@
+  profiles:
+    active: @profiles.active@
+  datasource:
+    username: root
+    password: '123456'
+    url: jdbc:mysql://127.0.0.1:3306/relaxed?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    queryDsSql:  SELECT * FROM `gen_data_source_config`
+
+
+jasypt:
+  encryptor:
+    password: "123456"
+
+
+server:
+  port: 7777
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+      insert-strategy: not_empty
+      update-strategy: not_empty
+      logic-delete-value: "NOW()" # 逻辑已删除值(使用当前时间标识)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+relaxed:
+  swagger:
+    title: Code gen
+    group-name: code-gen
+    documentation-type: oas_30
+    description:  代码生成接口服务Api文档
+    version: 0.0.1
+    license: Powered By Codegen
+    licenseUrl: http://www.lovecyy.cn/
+    terms-of-service-url: http://www.lovecyy.cn/
+    host: http://codegen-api:7777
+    contact:
+      name: codegen
+      email: codegen@foxmail.com
+      url: https://github.com/codegen
+    provider:
+      aggregator-origin: http://test-admin:8080

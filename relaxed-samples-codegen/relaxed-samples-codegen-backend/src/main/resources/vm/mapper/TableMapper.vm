@@ -1,0 +1,17 @@
+package ${packageName}.${moduleName}.mapper;
+
+import ${packageName}.${moduleName}.model.entity.${className};
+
+import com.relaxed.extend.mybatis.plus.mapper.ExtendMapper;
+
+/**
+ * <p>
+ * ${comments} Mapper 接口
+ * </p>
+ *
+ * @author ${author}
+ * @since ${currentTime}
+ */
+public interface ${className}Mapper extends ExtendMapper<${className}> {
+
+}

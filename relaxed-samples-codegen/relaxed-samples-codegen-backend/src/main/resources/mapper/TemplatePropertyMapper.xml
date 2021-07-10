@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.relaxed.samples.codegen.mapper.TemplatePropertyMapper">
+    <resultMap id="BaseResultMap" type="com.relaxed.samples.codegen.model.entity.TemplateProperty">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="group_id" jdbcType="INTEGER" property="groupId" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="prop_key" jdbcType="VARCHAR" property="propKey" />
+        <result column="default_value" jdbcType="VARCHAR" property="defaultValue" />
+        <result column="required" jdbcType="BOOLEAN" property="required" />
+        <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, group_id, title, prop_key, default_value, required, remarks, create_time, update_time
+  </sql>
+</mapper>

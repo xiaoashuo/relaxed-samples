@@ -1,0 +1,43 @@
+package ${packageName}.${moduleName}.service.impl;
+
+
+import cn.hutool.core.util.ObjectUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
+import ${packageName}.${moduleName}.mapper.${className}Mapper;
+import ${packageName}.${moduleName}.service.${className}Service;
+import ${packageName}.${moduleName}.model.dto.${className}DTO;
+import ${packageName}.${moduleName}.model.entity.${className};
+import ${packageName}.${moduleName}.model.vo.${className}VO;
+
+import com.relaxed.common.core.domain.PageParam;
+import com.relaxed.common.core.domain.PageResult;
+import com.relaxed.extend.mybatis.plus.toolkit.PageUtil;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ * ${comments} 业务层实现
+ * </p>
+ *
+ * @author ${author}
+ * @since ${currentTime}
+ */
+@RequiredArgsConstructor
+@Service
+public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${className}> implements ${className}Service {
+
+    @Override
+    public PageResult<${className}VO> selectByPage(PageParam pageParam, ${className}QO ${lowerClassName}QO) {
+        IPage<${className}VO> page = PageUtil.prodPage(pageParam);
+        LambdaQueryWrapper<${className}> wrapper = Wrappers.lambdaQuery(${className}.class)
+            .eq(ObjectUtil.isNotNull(${lowerClassName}QO.getId()),${className}::getId, ${lowerClassName}QO.getId());
+        this.baseMapper.selectByPage(page,wrapper);
+        return new PageResult<>(page.getRecords(),page.getTotal());
+    }
+
+}

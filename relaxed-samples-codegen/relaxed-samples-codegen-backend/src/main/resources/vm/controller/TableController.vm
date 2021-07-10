@@ -1,0 +1,85 @@
+package ${packageName}.${moduleName}.controller;
+
+
+import ${packageName}.${moduleName}.model.entity.${className};
+import ${packageName}.${moduleName}.model.qo.${className}QO;
+import ${packageName}.${moduleName}.model.vo.${className}VO;
+
+import ${packageName}.${moduleName}.service.${className}Service;
+
+import com.relaxed.common.core.domain.PageParam;
+import com.relaxed.common.core.domain.PageResult;
+import com.relaxed.common.core.result.BaseResultCode;
+import com.relaxed.common.core.result.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * <p>
+ * ${comments} 控制器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${currentTime}
+ */
+@RequiredArgsConstructor
+@RestController
+@RequestMapping
+@Api( tags = "${comments}")
+public class ${className}Controller {
+
+    private final ${className}Service ${lowerClassName}Service;
+
+     /**
+      * 分页查询
+      * @param pageParam {@link PageParam} 分页参数
+      * @param ${lowerClassName}QO {@link ${className}QO} 查询条件
+      * @return @{code R<PageResult<${className}VO>>} 通用返回体
+      */
+      @ApiOperation(value = "分页查询", notes = "分页查询")
+      @GetMapping("/page" )
+      public R<PageResult<${className}VO>> page(PageParam pageParam, ${className}QO ${lowerClassName}QO) {
+          return R.ok(${lowerClassName}Service.selectByPage(pageParam, ${lowerClassName}QO));
+      }
+
+
+     /**
+      * 新增数据
+      * @param ${lowerClassName} {@link ${className}} 数据参数
+      * @return {@code R<?>} 通用返回体
+      */
+     @ApiOperation(value = "新增数据", notes = "新增数据")
+     @PostMapping
+     public R<?> save(@RequestBody ${className} ${lowerClassName}) {
+      return ${lowerClassName}Service.save(${lowerClassName}) ?
+              R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增数据失败");
+     }
+
+
+    /**
+     * 更新数据
+     * @param ${lowerClassName} {@link ${className}} 更新数据
+     * @return {@code R<?>}通用返回体
+     */
+    @ApiOperation(value = "更新数据", notes = "更新数据")
+    @PutMapping
+    public R<?> updateById(@RequestBody ${className} ${lowerClassName}) {
+        return ${lowerClassName}Service.updateById(${lowerClassName}) ?
+            R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
+    }
+
+    /**
+     * 根据${pk.attrName}删除数据
+     * @param ${pk.attrName} {@code ${pk.attrName}} ${pk.attrName}
+     * @return {@code R<?>} 通用返回体
+     */
+    @ApiOperation(value = "根据${pk.attrName}删除数据", notes = "根据${pk.attrName}删除数据")
+    @DeleteMapping("/{${pk.attrName}}" )
+    public R<?> removeById(@PathVariable ${pk.attrType} ${pk.attrName}) {
+        return ${lowerClassName}Service.removeById(${pk.attrName}) ?
+               R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "根据${pk.attrName}删除数据失败");
+    }
+
+}
