@@ -29,14 +29,6 @@ public class BatchOps extends AbstractBatchOps {
 
 	private static ThreadPoolExecutor executor = ThreadUtil.newExecutor(coreSize, maxSize);
 
-	public BatchOps(BatchGroup batchGroup, BatchConsumer batchConsumer, BatchSupplier batchSupplier) {
-		super(batchGroup, batchConsumer, batchSupplier);
-	}
-
-	public BatchOps(String taskName, BatchGroup batchGroup, BatchConsumer batchConsumer, BatchSupplier batchSupplier) {
-		super(taskName, batchGroup, batchConsumer, batchSupplier);
-	}
-
 	/**
 	 * 执行器
 	 * @return

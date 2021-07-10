@@ -3,11 +3,15 @@ package com.relaxed.samples.test;
 import com.relaxed.common.core.batch.functions.BatchConsumer;
 import com.relaxed.common.core.batch.functions.BatchSupplier;
 import com.relaxed.common.core.batch.params.BatchConsumerParam;
+import com.relaxed.common.core.batch.params.BatchExceptionParam;
 import com.relaxed.common.core.batch.params.BatchGroup;
+import com.relaxed.common.core.batch.params.BatchParam;
 import com.relaxed.common.core.exception.BusinessException;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
@@ -17,36 +21,52 @@ import java.util.stream.Collectors;
  * @date 2021/7/9 19:57
  * @Version 1.0
  */
+@Slf4j
 public class BatchTest {
 
-	public void runBatch() {
-		int externalNum = 168;
-		BatchGroup batchGroup = new BatchGroup(100, 500);
-		BatchConsumer batchConsumer = data -> {
-			System.out.println("开始消费" + data + "当前线程id" + Thread.currentThread());
-			BatchConsumerParam batchConsumerParam = data;
-			int currentStepPosition = batchConsumerParam.getCurrentStepPosition();
-			if (currentStepPosition == 99500) {
-				throw new BusinessException(100, "消费出现异常");
-			}
-			List<String> data1 = batchConsumerParam.getData();
-			long count = data1.stream().collect(Collectors.summingLong(e -> Long.parseLong(e)));
-		};
-		BatchSupplier<String> batchSupplier = (startNum, total) -> {
-			System.out.println("起始步进开始值" + startNum + "总数目" + total + "外部参数" + externalNum);
-			List<String> list = new ArrayList<>();
-			list.add("1");
-			list.add("2");
-			return list;
-		};
-		BatchOps abstractBatchOps = new BatchOps(batchGroup, batchConsumer, batchSupplier);
-		abstractBatchOps.setTaskName("合同盖章");
+	public void makeException() {
+		int m = 0;
+		int t = 5 / m;
+	}
 
-		// abstractBatchOps.setErrorHandler((batchExceptionParam -> {
-		// System.out.println("错误发送"+batchExceptionParam);
-		// }))
-		abstractBatchOps.setAsync(true);
-		abstractBatchOps.runBatch();
+	public void runBatch() {
+		BatchGroup batchGroup = new BatchGroup(1000, 500);
+		BatchSupplier batchSupplier = (currentStepPosition, size) -> {
+			log.info("当前线程{} -当前步进位置{}-批次大小{}", Thread.currentThread(), currentStepPosition, size);
+			if (currentStepPosition == 0) {
+				makeException();
+			}
+			List<String> strs = new ArrayList<>();
+			strs.add("1");
+			return strs;
+		};
+		BatchConsumer batchConsumer = (batchConsumerParam) -> {
+			List<String> strs = batchConsumerParam.getData();
+
+			log.info("开始消费{}", batchConsumerParam);
+		};
+		BatchParam batchParam = BatchParam.ofRun(batchGroup, batchSupplier, batchConsumer);
+		batchParam.setTaskName("测试任务");
+		BatchOps batchTest = new BatchOps();
+		// log.info("同步执行任务开始");
+		// batchTest.runBatch(batchParam);
+		// log.info("同步执行任务结束");
+		//
+		Consumer<BatchExceptionParam> errorHandle = (batchExceptionParam) -> {
+			log.info("发生异常{}", batchExceptionParam, batchExceptionParam.getThrowable());
+		};
+		log.info("异步执行任务开始");
+		batchParam.setAsync(true);
+		batchTest.setErrorHandler(errorHandle);
+		batchTest.runBatch(batchParam);
+		System.out.println("我是下一步任务");
+		log.info("异步执行任务结束");
+
+	}
+
+	public static void main(String[] args) {
+		BatchTest batchTest = new BatchTest();
+		batchTest.runBatch();
 	}
 
 }
