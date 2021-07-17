@@ -1,5 +1,6 @@
 package com.relaxed.samples.codegen.service;
 
+import com.relaxed.samples.codegen.model.dto.DdlGenerateOptionDTO;
 import com.relaxed.samples.codegen.model.dto.GenerateOptionDTO;
 import com.relaxed.samples.codegen.model.dto.PreGenerateOptionDTO;
 
@@ -19,6 +20,13 @@ public interface GenerateService {
 	 * @return {@code byte[]}
 	 */
 	byte[] generateCode(GenerateOptionDTO generateOptionDTO) throws IOException;
+
+	/**
+	 * 生成代码
+	 * @param generateOptionDTO {@code generateOptionDTO}
+	 * @return {@code byte[]}
+	 */
+	byte[] generateCodeByDdl(DdlGenerateOptionDTO generateOptionDTO) throws IOException;
 
 	/**
 	 * 生成预览代码

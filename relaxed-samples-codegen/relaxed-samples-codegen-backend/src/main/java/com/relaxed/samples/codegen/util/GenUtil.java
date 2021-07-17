@@ -5,6 +5,7 @@ import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.StrUtil;
 
 import com.relaxed.samples.codegen.model.converter.column.MysqlColumnTypeConvert;
+import com.relaxed.samples.codegen.model.dto.DdlGenerateOptionDTO;
 import com.relaxed.samples.codegen.model.dto.GenerateOptionDTO;
 import com.relaxed.samples.codegen.model.entity.*;
 import org.apache.commons.lang.WordUtils;
@@ -41,6 +42,39 @@ public class GenUtil {
 	 * @throws IOException
 	 */
 	public static void generateCode(GenerateOptionDTO generateOptionDTO, ZipOutputStream zip,
+			List<TemplateFile> templateFiles, TableInfo tableInfo, List<ColumnInfo> columnInfos) throws IOException {
+		// 生成代码
+		GenerateProperties generateProperties = buildGenerateProperties(tableInfo, columnInfos,
+				generateOptionDTO.getTablePrefix());
+		// 将generateProperties->map
+		Map<String, Object> map = BeanUtil.beanToMap(generateProperties);
+		// 追加用户自定义属性
+		appendCustomAttr(map, generateOptionDTO.getCustomProperties());
+		// 模板渲染
+		VelocityContext context = new VelocityContext(map);
+		for (TemplateFile templateFile : templateFiles) {
+			// 渲染模板
+			StringWriter sw = new StringWriter();
+			Velocity.evaluate(context, sw, tableInfo.getTableName() + templateFile.getFilePath(),
+					templateFile.getContext());
+			String realFilePath = getRealFilePath(templateFile.getFilePath(), templateFile.getFileName(), map);
+			zip.putNextEntry(new ZipEntry(realFilePath));
+			IoUtil.write(zip, StandardCharsets.UTF_8, false, sw.toString());
+			IoUtil.close(sw);
+			zip.closeEntry();
+		}
+	}
+
+	/**
+	 * 生成代码
+	 * @param generateOptionDTO
+	 * @param zip
+	 * @param templateFiles
+	 * @param tableInfo
+	 * @param columnInfos
+	 * @throws IOException
+	 */
+	public static void generateCodeByDdl(DdlGenerateOptionDTO generateOptionDTO, ZipOutputStream zip,
 			List<TemplateFile> templateFiles, TableInfo tableInfo, List<ColumnInfo> columnInfos) throws IOException {
 		// 生成代码
 		GenerateProperties generateProperties = buildGenerateProperties(tableInfo, columnInfos,

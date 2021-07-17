@@ -1,10 +1,13 @@
 package com.relaxed.samples.codegen.service.impl;
 
+import com.relaxed.samples.codegen.model.dto.DdlGenerateOptionDTO;
 import com.relaxed.samples.codegen.model.dto.GenerateOptionDTO;
 import com.relaxed.samples.codegen.model.dto.PreGenerateOptionDTO;
+import com.relaxed.samples.codegen.model.dto.TableInfoDTO;
 import com.relaxed.samples.codegen.model.entity.ColumnInfo;
 import com.relaxed.samples.codegen.model.entity.TableInfo;
 import com.relaxed.samples.codegen.model.entity.TemplateFile;
+import com.relaxed.samples.codegen.parse.GenParse;
 import com.relaxed.samples.codegen.service.GenerateService;
 import com.relaxed.samples.codegen.service.TableInfoService;
 import com.relaxed.samples.codegen.service.TemplateManageService;
@@ -51,6 +54,27 @@ public class GenerateServiceImpl implements GenerateService {
 		}
 		return outputStream.toByteArray();
 
+	}
+
+	@Override
+	public byte[] generateCodeByDdl(DdlGenerateOptionDTO generateOptionDTO) throws IOException {
+		// 字节数组流不需要关闭
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		try (ZipOutputStream zip = new ZipOutputStream(outputStream)) {
+			List<TemplateFile> templateFiles = templateManageService.selectTemplateFilesByGid(
+					generateOptionDTO.getTemplateGroupId(), generateOptionDTO.getTemplateFileIds());
+			Assert.notEmpty(templateFiles, " template file that does not exist ");
+			GenParse genParse = new GenParse();
+			for (String statement : generateOptionDTO.getDcStatements()) {
+				TableInfoDTO tableInfoDTO = genParse.parseDdl(statement);
+				if (tableInfoDTO == null) {
+					continue;
+				}
+				GenUtil.generateCodeByDdl(generateOptionDTO, zip, templateFiles, tableInfoDTO.getTableInfo(),
+						tableInfoDTO.getColumnInfos());
+			}
+		}
+		return outputStream.toByteArray();
 	}
 
 	@Override

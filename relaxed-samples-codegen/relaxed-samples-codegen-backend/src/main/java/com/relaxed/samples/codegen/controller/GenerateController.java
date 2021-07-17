@@ -5,6 +5,7 @@ import cn.hutool.core.io.IoUtil;
 import com.relaxed.common.core.domain.PageParam;
 import com.relaxed.common.core.domain.PageResult;
 import com.relaxed.common.core.result.R;
+import com.relaxed.samples.codegen.model.dto.DdlGenerateOptionDTO;
 import com.relaxed.samples.codegen.model.dto.GenerateOptionDTO;
 import com.relaxed.samples.codegen.model.dto.PreGenerateOptionDTO;
 import com.relaxed.samples.codegen.model.entity.ColumnInfo;
@@ -81,6 +82,22 @@ public class GenerateController {
 	@PostMapping("/code")
 	public void generateCode(@RequestBody GenerateOptionDTO generateOptionDTO, HttpServletResponse response) {
 		byte[] data = generateService.generateCode(generateOptionDTO);
+		response.reset();
+		response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"Relaxed-Codegen.zip\"");
+		response.addHeader(HttpHeaders.CONTENT_LENGTH, String.valueOf(data.length));
+		response.setContentType("application/octet-stream; charset=UTF-8");
+		IoUtil.write(response.getOutputStream(), Boolean.TRUE, data);
+	}
+
+	/**
+	 * 生成代码文件
+	 * @param generateOptionDTO {@code generateOptionDTO}
+	 * @param response {@code Response}
+	 */
+	@SneakyThrows
+	@PostMapping("/ddl/code")
+	public void generateCodeByDdl(@RequestBody DdlGenerateOptionDTO generateOptionDTO, HttpServletResponse response) {
+		byte[] data = generateService.generateCodeByDdl(generateOptionDTO);
 		response.reset();
 		response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"Relaxed-Codegen.zip\"");
 		response.addHeader(HttpHeaders.CONTENT_LENGTH, String.valueOf(data.length));
