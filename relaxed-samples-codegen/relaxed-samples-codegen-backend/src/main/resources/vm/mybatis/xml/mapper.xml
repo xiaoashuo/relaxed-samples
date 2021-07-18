@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${packageName}.${moduleName}.mapper.${className}Mapper">
+  <resultMap id="BaseResultMap" type="${packageName}.${moduleName}.model.entity.${className}">
+    #foreach($column in $columns)
+    #if($column.attrName==$pk.attrName)
+    <id property="${pk.attrName}" column="${pk.columnName}"/>
+    #else
+    <result property="${column.attrName}" column="${column.columnName}"/>
+    #end
+    #end
+  </resultMap>
+  <sql id="Base_Column_List">
+    #set( $lag = 0)
+    #set( $column_size=$columns.size())
+    #foreach ($column in $columns)
+    #if(($lag+1) >= $column_size)
+    ${column.columnName}
+    #else
+    ${column.columnName},
+    #end
+    #set( $lag = ($lag + 1) )
+    #end
+
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="${pk.attrType}" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from ${tableName}
+    where ${pk.columnName} = #{${pk.columnName},jdbcType=${pk.dataType}}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="${pk.attrType}">
+    delete from ${tableName}
+    where ${pk.columnName} = #{${pk.columnName},jdbcType=${pk.dataType}}
+  </delete>
+
+  <insert id="insert" parameterType="${parentPack}.model.auto.${tableInfo.javaTableName}">
+    insert into ${tableName} (
+    #set( $lag = 0)
+    #foreach ($column in $columns)
+    #if(($lag+1)>=(${columns.size()}))
+    ${column.columnName}
+    #else
+    ${column.columnName},
+    #end
+    #set( $lag  = $lag + 1 )
+    #end
+    )
+    values (
+    #set( $lag = 0)
+    #foreach ($column in $columns)
+    #if(($lag+1)>=(${columns.size()}))
+    #{${column.attrName},jdbcType=${column.dataType}}
+    #else
+    #{${column.attrName},jdbcType=${column.dataType}},
+    #end
+    #set( $lag = $lag + 1 )
+    #end
+    )
+  </insert>
+
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" useGeneratedKeys="true" parameterType="${packageName}.${moduleName}.model.entity.${className}">
+    insert into ${tableName}
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      #foreach ($column in $columns)
+
+      <if test="${column.attrName} != null">
+        ${column.columnName},
+      </if>
+      #end
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #foreach ($column in $columns)
+      <if test="${column.attrName} != null">
+        #{${column.attrName},jdbcType=${column.dataType}},
+      </if>
+      #end
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="${packageName}.${moduleName}.model.entity.${className}">
+    update ${tableName}
+    <set>
+      #foreach ($column in $columns)
+      #if(${column.columnName} != ${pk.columnName})
+
+      <if test="${column.attrName} != null">
+        ${column.columnName} = #{${column.attrName},jdbcType=${column.dataType}},
+      </if>
+      #end
+      #end
+    </set>
+
+    where
+    #foreach ($column in $columns)
+    #if(${column.columnName} == ${pk.columnName})
+
+    ${column.columnName} = #{${column.attrName},jdbcType=${column.dataType}}
+    #end
+    #end
+
+  </update>
+
+  #set( $prinum = 0)
+  #foreach ($column in $columns)
+  #if(${column.columnName} != ${pk.columnName})
+  #set( $prinum = $prinum + 1 )
+  #end
+  #end
+  <update id="updateByPrimaryKey" parameterType="${packageName}.${moduleName}.model.entity.${className}">
+    update ${tableName}
+    set
+    #set( $lag = 0)
+    #foreach ($column in $columns)
+    #if(${column.columnName} != ${pk.columnName})
+    #if(($lag+1)>=(${prinum}))
+
+    ${column.columnName} = #{${column.attrName},jdbcType=${column.dataType}}
+    #else
+
+    ${column.columnName} = #{${column.attrName},jdbcType=${column.dataType}},
+    #end
+    #set( $lag = $lag + 1 )
+    #end
+    #end
+
+    where
+    #foreach ($column in $columns)
+    #if(${column.columnName} == ${pk.columnName})
+    ${column.columnName} = #{${column.attrName},jdbcType=${column.dataType}}
+    #end
+    #end
+
+  </update>
+
+
+
+  <insert id="batchInsert" keyColumn="${pk.columnName}" keyProperty="${pk.attrName}" parameterType="List" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into ${tableName}
+    (
+    #set( $lag = 0)
+    #foreach ($column in $columns)
+    #if(${column.columnName} != ${pk.columnName})
+    #if(($lag+1)>=(${columns.size()}))
+    ${column.columnName}
+    #else
+    ${column.columnName},
+    #end
+    #end
+    #set( $lag  = $lag + 1 )
+    #end
+    )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (
+      #set( $lag = 0)
+      #foreach ($column in $columns)
+      #if(${column.columnName} != ${pk.columnName})
+      #if(($lag+1)>=(${columns.size()}))
+      #{${column.attrName},jdbcType=${column.dataType}}
+      #else
+      #{${column.attrName},jdbcType=${column.dataType}},
+      #end
+      #end
+      #set( $lag = $lag + 1 )
+      #end
+      )
+    </foreach>
+  </insert>
+
+</mapper>
