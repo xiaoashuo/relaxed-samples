@@ -1,0 +1,20 @@
+spring:
+  redis:
+    database: 1
+    host: 127.0.0.1
+    port: 6379
+    lettuce:
+      pool:
+        max-idle: 30 #最大空闲连接数
+        min-idle: 0 #最小空闲连接数
+        max-active: 30 #最大连接数
+        max-wait: -1 #最大等待时间
+
+relaxed:
+   cache:
+     key-prefix: 'pc:'
+     lock-key-suffix: locked
+     delimiter: ':'
+     null-value: "N_V"
+     expire-time: 86400
+     locked-time-out: 1000
