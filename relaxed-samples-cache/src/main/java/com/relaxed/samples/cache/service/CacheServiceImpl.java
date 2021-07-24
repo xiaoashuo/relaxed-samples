@@ -63,4 +63,8 @@ public class CacheServiceImpl implements CacheService {
 		return "12";
 	}
 
+	@Override
+	public String noCache(Integer param) {
+		return "noCache";
+	}
 }

@@ -65,4 +65,11 @@ public interface CacheService {
 	 */
 	String cachePut(Integer param);
 
+	/**
+	 * 无缓存
+	 * @param param
+	 * @return
+	 */
+	String noCache(Integer param);
+
 }

@@ -21,11 +21,21 @@ public class CacheController {
 
 	private final CacheService cacheService;
 
+	/**
+	 * 根据条件决定是否缓存
+	 * @param param
+	 * @return
+	 */
 	@GetMapping("/lock/condition")
 	public String cacheLockCondition(Integer param) {
 		return cacheService.cacheLockCondition(param);
 	}
 
+	/**
+	 * 带前缀缓存
+	 * @param param
+	 * @return
+	 */
 	@GetMapping("/lock/prefix")
 	public String cacheLockPrefix(Integer param) {
 		return cacheService.cacheLockPrefix(param);
@@ -60,5 +70,8 @@ public class CacheController {
 	public String cachePut(Integer param) {
 		return cacheService.cachePut(param);
 	}
-
+	@GetMapping("/lock/no")
+	public String cacheNo(Integer param) {
+		return cacheService.noCache(param);
+	}
 }
