@@ -23,6 +23,7 @@
       <module>relaxed-samples-swagger</module>
       <module>relaxed-samples-codegen</module>
       <module>relaxed-samples-cache</module>
+      <module>relaxed-samples-datascope</module>
       <module>relaxed-samples-dynamic-datasource</module>
     </modules>
 

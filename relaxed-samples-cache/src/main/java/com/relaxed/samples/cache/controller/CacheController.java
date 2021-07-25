@@ -70,8 +70,10 @@ public class CacheController {
 	public String cachePut(Integer param) {
 		return cacheService.cachePut(param);
 	}
+
 	@GetMapping("/lock/no")
 	public String cacheNo(Integer param) {
 		return cacheService.noCache(param);
 	}
+
 }

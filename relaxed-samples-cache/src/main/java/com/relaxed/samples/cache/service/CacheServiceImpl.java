@@ -67,4 +67,5 @@ public class CacheServiceImpl implements CacheService {
 	public String noCache(Integer param) {
 		return "noCache";
 	}
+
 }

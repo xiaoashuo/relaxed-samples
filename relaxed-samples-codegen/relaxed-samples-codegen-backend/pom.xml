@@ -29,9 +29,13 @@
             <artifactId>relaxed-common-datasource</artifactId>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>com.baomidou</groupId>-->
+<!--            <artifactId>mybatis-plus-boot-starter</artifactId>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-extend-mybatis-plus</artifactId>
         </dependency>
 
         <dependency>
