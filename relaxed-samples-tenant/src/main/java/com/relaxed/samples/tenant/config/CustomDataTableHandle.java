@@ -1,7 +1,8 @@
 package com.relaxed.samples.tenant.config;
 
-import com.relaxed.common.tenant.handler.table.DataScope;
-import com.relaxed.common.tenant.handler.table.DataTableHandler;
+import com.relaxed.common.tenant.core.table.DataScope;
+import com.relaxed.common.tenant.core.table.TableHandler;
+
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * @Version 1.0
  */
 @RequiredArgsConstructor
-public class CustomDataTableHandle implements DataTableHandler {
+public class CustomDataTableHandle implements TableHandler {
 
 	private final List<DataScope> dataScopes;
 

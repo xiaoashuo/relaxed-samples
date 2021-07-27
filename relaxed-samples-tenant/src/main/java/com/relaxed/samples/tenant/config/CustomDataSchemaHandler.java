@@ -1,6 +1,6 @@
 package com.relaxed.samples.tenant.config;
 
-import com.relaxed.common.tenant.handler.schema.DataSchemaHandler;
+import com.relaxed.common.tenant.core.schema.SchemaHandler;
 import com.relaxed.samples.tenant.holder.SchemaHolder;
 import lombok.RequiredArgsConstructor;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * @Version 1.0
  */
 @RequiredArgsConstructor
-public class CustomDataSchemaHandler implements DataSchemaHandler {
+public class CustomDataSchemaHandler implements SchemaHandler {
 
 	private final List<String> schemaList;
 

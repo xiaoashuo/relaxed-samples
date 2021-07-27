@@ -1,6 +1,6 @@
 package com.relaxed.samples.tenant.config;
 
-import com.relaxed.common.tenant.handler.table.DataScope;
+import com.relaxed.common.tenant.core.table.DataScope;
 import com.relaxed.samples.tenant.holder.TenantHolder;
 import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.Expression;
@@ -26,7 +26,7 @@ public class CustomDataScope implements DataScope {
 	private final String column_id = "tenant_id";
 
 	@Override
-	public String getTenantId() {
+	public String getResource() {
 		return column_id;
 	}
 
@@ -39,7 +39,7 @@ public class CustomDataScope implements DataScope {
 
 	@Override
 	public Expression getExpression(String tableName, Alias tableAlias) {
-		Column column = new Column(tableAlias == null ? getTenantId() : tableAlias.getName() + "." + getTenantId());
+		Column column = new Column(tableAlias == null ? column_id : tableAlias.getName() + "." + column_id);
 		// 租户id列值 此处可以从用户权限里面获取等等
 		String tenantId = TenantHolder.get();
 		ExpressionList expressionList = new ExpressionList();

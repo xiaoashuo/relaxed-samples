@@ -1,7 +1,7 @@
 package com.relaxed.samples.tenant.config;
 
 import cn.hutool.core.collection.ListUtil;
-import com.relaxed.common.tenant.handler.table.DataScope;
+import com.relaxed.common.tenant.core.table.DataScope;
 import com.relaxed.common.tenant.interceptor.TenantInterceptor;
 import com.relaxed.common.tenant.parse.DefaultSqlParser;
 import org.springframework.context.annotation.Bean;
@@ -28,8 +28,9 @@ public class TenantConfig {
 	 */
 	@Bean
 	public TenantInterceptor tenantInterceptor() {
+		List<String> schemas = ListUtil.toList("db1");
 		// schema 处理器
-		CustomDataSchemaHandler customDataSchemaHandler = new CustomDataSchemaHandler();
+		CustomDataSchemaHandler customDataSchemaHandler = new CustomDataSchemaHandler(schemas);
 		// 数据域 主要作为租户列
 		CustomDataScope customDataScope = new CustomDataScope();
 		List<DataScope> dataScopes = ListUtil.toList(customDataScope);
