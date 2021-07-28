@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.relaxed.samples.tenant.mapper.AddressMapper">
+  <resultMap id="addressMap" type="com.relaxed.samples.tenant.model.entity.Address">
+                  <id property="id" column="id"/>
+                        <result property="userId" column="user_id"/>
+                        <result property="addressName" column="address_name"/>
+            </resultMap>
+</mapper>

@@ -17,8 +17,8 @@ public class TenantHolder {
 		return USER_HOLDER.get();
 	}
 
-	public static void set(String userId) {
-		USER_HOLDER.set(userId);
+	public static void set(String tenantId) {
+		USER_HOLDER.set(tenantId);
 	}
 
 	public static void remove() {

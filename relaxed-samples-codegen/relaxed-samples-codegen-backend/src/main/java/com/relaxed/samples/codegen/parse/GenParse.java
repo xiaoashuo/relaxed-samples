@@ -1,5 +1,7 @@
 package com.relaxed.samples.codegen.parse;
 
+import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.StrUtil;
 import com.relaxed.samples.codegen.model.converter.column.MysqlIndexTypeConvert;
 import com.relaxed.samples.codegen.model.dto.TableInfoDTO;
 import com.relaxed.samples.codegen.model.entity.ColumnInfo;
@@ -74,6 +76,9 @@ public class GenParse extends JsqlParserSupport {
 	}
 
 	private String removeBackslash(String source) {
+		if (StrUtil.isEmpty(source)) {
+			return "";
+		}
 		return source.replaceAll("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~{}\"]", "");
 	}
 
@@ -113,46 +118,27 @@ public class GenParse extends JsqlParserSupport {
 		String stringList = PlainSelect.getStringList(data, true, false);
 		String[] elements = stringList.replaceAll(" ", "").replaceAll("DEFAULT,CHARSET", "DEFAULT CHARSET")
 				.split(",=,");
-
-		SimpleNode rootNode = new SimpleNode();
-		SimpleNode tmpNode = new SimpleNode();
-
-		for (int i = 0; i < elements.length; i += 2) {
-			if (i == 0) {
-				// 第一次
-				// 当前key
-				String element = elements[i];
-				// 下一项 值内容表式 当前项的值,下一项的key
-				String nextElement = elements[i + 1];
-				String[] keyValue = nextElement.split(",");
-				rootNode.setKey(element);
-				rootNode.setVal(keyValue[0]);
-				tmpNode = new SimpleNode();
-				tmpNode.setKey(keyValue[1]);
-				rootNode.setNext(tmpNode);
-
-			}
-			else if (i + 2 >= elements.length) {
-				String element = elements[i];
-				String lastValue = elements[i + 1];
-				String[] keyValue = element.split(",");
-				tmpNode.setVal(keyValue[0]);
-				SimpleNode nextNode = new SimpleNode();
-				nextNode.setKey(keyValue[1]);
-				nextNode.setVal(lastValue);
-				tmpNode.setNext(nextNode);
-				tmpNode = null;
-			}
-			else {
-				String element = elements[i];
-				String[] keyValue = element.split(",");
-				tmpNode.setVal(keyValue[0]);
-				SimpleNode nextNode = new SimpleNode();
-				nextNode.setKey(keyValue[1]);
-				tmpNode.setNext(nextNode);
-				tmpNode = nextNode;
-			}
+		int length = elements.length;
+		if (length == 0) {
+			return new HashMap<>();
 		}
+		SimpleNode rootNode = new SimpleNode();
+		SimpleNode tmpNode = rootNode;
+		String firstElement = elements[0];
+		String lastElement = elements[length - 1];
+		rootNode.setKey(firstElement);
+		String[] middleElement = ArrayUtil.sub(elements, 1, length - 1);
+		for (String middle : middleElement) {
+			String[] keyValue = middle.split(",");
+			String lastValue = keyValue[0];
+			tmpNode.setVal(lastValue);
+			SimpleNode nextNode = new SimpleNode();
+			String nextKey = keyValue[1];
+			nextNode.setKey(nextKey);
+			tmpNode.setNext(nextNode);
+			tmpNode = nextNode;
+		}
+		tmpNode.setVal(lastElement);
 		Map<String, String> tableOptionMap = new HashMap<>();
 		return convertToMap(rootNode, tableOptionMap);
 

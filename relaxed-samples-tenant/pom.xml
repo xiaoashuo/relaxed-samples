@@ -37,11 +37,27 @@
             <artifactId>relaxed-common-tenant</artifactId>
         </dependency>
 
-
+        <dependency>
+            <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-common-datasource</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-spring-boot-starter-swagger</artifactId>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

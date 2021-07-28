@@ -4,8 +4,11 @@ import cn.hutool.core.collection.ListUtil;
 import com.relaxed.common.tenant.core.table.DataScope;
 import com.relaxed.common.tenant.interceptor.TenantInterceptor;
 import com.relaxed.common.tenant.parse.DefaultSqlParser;
+import com.relaxed.samples.tenant.service.TenantConfigService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +16,13 @@ import java.util.List;
 /**
  * @author Yakir
  * @Topic TenantConfig
- * @Description
+ * @Description 若启用表处理器,插入需要自己维护租户列的插入
  * @date 2021/7/27 20:30
  * @Version 1.0
  */
+@RequiredArgsConstructor
 @Configuration
-public class TenantConfig {
+public class CustomTenantConfiguration {
 
 	/**
 	 * 多租户拦截器
@@ -27,10 +31,9 @@ public class TenantConfig {
 	 * @return com.relaxed.common.tenant.interceptor.TenantInterceptor
 	 */
 	@Bean
+	@DependsOn("tenantConfigService")
 	public TenantInterceptor tenantInterceptor() {
-		List<String> schemas = ListUtil.toList("db1");
-		// schema 处理器
-		CustomDataSchemaHandler customDataSchemaHandler = new CustomDataSchemaHandler(schemas);
+		CustomDataSchemaHandler customDataSchemaHandler = new CustomDataSchemaHandler();
 		// 数据域 主要作为租户列
 		CustomDataScope customDataScope = new CustomDataScope();
 		List<DataScope> dataScopes = ListUtil.toList(customDataScope);

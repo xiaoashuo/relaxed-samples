@@ -1,7 +1,11 @@
 package com.relaxed.samples.tenant.config;
 
+import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import com.relaxed.common.tenant.core.schema.SchemaHandler;
 import com.relaxed.samples.tenant.holder.SchemaHolder;
+import com.relaxed.samples.tenant.holder.TenantHolder;
+import com.relaxed.samples.tenant.model.entity.TenantConfig;
+import com.relaxed.samples.tenant.service.TenantConfigService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -16,8 +20,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomDataSchemaHandler implements SchemaHandler {
 
-	private final List<String> schemaList;
-
 	/**
 	 * 开启schema 独立数据库 多schema 多数据源实现方式类似 TODO 暂时不开启 需要建立多数据源方式
 	 * @author yakir
@@ -26,18 +28,7 @@ public class CustomDataSchemaHandler implements SchemaHandler {
 	 */
 	@Override
 	public boolean enable() {
-		return false;
-	}
-
-	/**
-	 * 获取所有schema
-	 * @author yakir
-	 * @date 2021/7/27 21:31
-	 * @return java.util.List<java.lang.String>
-	 */
-	@Override
-	public List<String> getAllSchemas() {
-		return schemaList;
+		return true;
 	}
 
 	/**
@@ -50,6 +41,9 @@ public class CustomDataSchemaHandler implements SchemaHandler {
 	 */
 	@Override
 	public boolean ignore(String currentSchema) {
+		if ("relaxed".equals(currentSchema)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -69,7 +63,9 @@ public class CustomDataSchemaHandler implements SchemaHandler {
 	public String getCurrentSchema() {
 		// 此处可以拿动态数据源当前数据库名称
 		// 拿到当前系统使用的数据库schema
-		return SchemaHolder.get();
+		String tenantId = TenantHolder.get();
+
+		return DynamicDataSourceContextHolder.peek();
 	}
 
 }
