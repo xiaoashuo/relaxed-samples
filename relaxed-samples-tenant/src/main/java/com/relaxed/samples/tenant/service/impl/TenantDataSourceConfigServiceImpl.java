@@ -4,11 +4,9 @@ import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import com.relaxed.extend.mybatis.plus.service.impl.ExtendServiceImpl;
 import com.relaxed.samples.tenant.mapper.TenantDataSourceConfigMapper;
-import com.relaxed.samples.tenant.model.converter.TenantConfigConverter;
 import com.relaxed.samples.tenant.model.converter.TenantDataSourceConfigConverter;
 import com.relaxed.samples.tenant.model.entity.TenantDataSourceConfig;
 import com.relaxed.samples.tenant.model.qo.TenantDataSourceConfigQO;
@@ -16,7 +14,6 @@ import com.relaxed.samples.tenant.model.qo.TenantDataSourceConfigQO;
 import com.relaxed.common.core.domain.PageParam;
 import com.relaxed.common.core.domain.PageResult;
 
-import com.relaxed.samples.tenant.model.vo.TenantConfigVO;
 import com.relaxed.samples.tenant.model.vo.TenantDataSourceConfigVO;
 import com.relaxed.samples.tenant.service.TenantDataSourceConfigService;
 import com.relaxed.samples.tenant.utils.PageUtil;

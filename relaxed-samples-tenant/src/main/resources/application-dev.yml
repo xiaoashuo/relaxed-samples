@@ -2,9 +2,14 @@ spring:
   datasource:
     username: root
     password: '123456'
-    url: jdbc:mysql://127.0.0.1:3306/relaxed?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/relaxed?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    queryDsSql:  SELECT * FROM `tenant_data_source_config`
 
+
+
+jasypt:
+  encryptor:
+    password: "123456"
 # Logger Config
 logging:
   level:
@@ -21,3 +26,26 @@ mybatis-plus:
       update-strategy: not_empty
       logic-delete-value: "NOW()" # 逻辑已删除值(使用当前时间标识)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+
+
+relaxed:
+  swagger:
+    title: Show Docs
+    group-name: Test
+    documentation-type: swagger_2
+    description:  接口服务Api文档
+    version: 0.0.1
+    license: Powered By Test
+    licenseUrl: http://www.test.cn/
+    terms-of-service-url: http://www.test.cn/
+    host: http://test-api:9090
+    contact:
+      name: test
+      email: test@foxmail.com
+      url: https://github.com/test
+    provider:
+      aggregator-origin: http://test-admin:8080
+    authorization:
+      name: login
+      token-url: http://www.baidu.com

@@ -30,7 +30,6 @@ import org.springframework.stereotype.Service;
  * @author yakir
  * @since 2021-07-28T16:57:52.841
  */
-// @DS("#header.dsName")
 @RequiredArgsConstructor
 @Service
 public class TUserServiceImpl extends ExtendServiceImpl<TUserMapper, TUser> implements TUserService {

@@ -5,7 +5,7 @@ import com.baomidou.dynamic.datasource.processor.DsProcessor;
 import com.baomidou.dynamic.datasource.processor.DsSessionProcessor;
 import com.baomidou.dynamic.datasource.processor.DsSpelExpressionProcessor;
 import com.relaxed.common.datasource.processor.DsRequestProcessor;
-import com.relaxed.samples.tenant.service.TenantConfigService;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,6 +18,16 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class DynamicConfig {
+
+	@Bean
+	public FilterRegistrationBean<TenantFilter> filterRegistrationBean() {
+		FilterRegistrationBean<TenantFilter> registrationBean = new FilterRegistrationBean();
+		registrationBean.setFilter(new TenantFilter());
+		registrationBean.addUrlPatterns("/*");
+		registrationBean.setName("tenant-filter");
+		registrationBean.setOrder(1);
+		return registrationBean;
+	}
 
 	@Bean
 	public DsProcessor dsProcessor() {

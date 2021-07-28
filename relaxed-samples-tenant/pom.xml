@@ -16,21 +16,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.lovecyy</groupId>
-            <artifactId>relaxed-common-core</artifactId>
-        </dependency>
-
-
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.lovecyy</groupId>
-            <artifactId>relaxed-extend-mybatis-plus</artifactId>
+            <artifactId>relaxed-common-conf</artifactId>
         </dependency>
+
+
+
+
 
         <dependency>
             <groupId>com.lovecyy</groupId>

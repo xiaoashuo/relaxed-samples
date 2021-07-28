@@ -11,14 +11,22 @@ import org.springframework.core.NamedThreadLocal;
  */
 public class TenantHolder {
 
-	private static final ThreadLocal<String> USER_HOLDER = new NamedThreadLocal<>("table");
+	private static final ThreadLocal<TenantInfo> USER_HOLDER = new NamedThreadLocal<>("table");
 
-	public static String get() {
+	public static TenantInfo get() {
 		return USER_HOLDER.get();
 	}
 
-	public static void set(String tenantId) {
-		USER_HOLDER.set(tenantId);
+	public static String getSchema() {
+		return get().getSchema();
+	}
+
+	public static String getTenantId() {
+		return get().getTenantId();
+	}
+
+	public static void set(TenantInfo tenantInfo) {
+		USER_HOLDER.set(tenantInfo);
 	}
 
 	public static void remove() {

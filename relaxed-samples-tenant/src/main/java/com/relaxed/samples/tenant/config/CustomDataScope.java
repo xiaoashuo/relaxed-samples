@@ -41,7 +41,7 @@ public class CustomDataScope implements DataScope {
 	public Expression getExpression(String tableName, Alias tableAlias) {
 		Column column = new Column(tableAlias == null ? column_id : tableAlias.getName() + "." + column_id);
 		// 租户id列值 此处可以从用户权限里面获取等等
-		String tenantId = TenantHolder.get();
+		String tenantId = TenantHolder.getTenantId();
 		ExpressionList expressionList = new ExpressionList();
 		expressionList.setExpressions(Arrays.asList(new StringValue(tenantId)));
 		return new InExpression(column, expressionList);

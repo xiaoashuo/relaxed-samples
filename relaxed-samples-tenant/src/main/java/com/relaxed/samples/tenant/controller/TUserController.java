@@ -42,14 +42,8 @@ public class TUserController {
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/page")
 	public R<PageResult<TUserVO>> page(PageParam pageParam, TUserQO tUserQO) {
-		TenantHolder.set(ServletUtils.getHeaderValue("tenantId"));
-		try {
-			PageResult<TUserVO> data = tUserService.selectByPage(pageParam, tUserQO);
-			return R.ok(data);
-		}
-		finally {
-			TenantHolder.remove();
-		}
+		PageResult<TUserVO> data = tUserService.selectByPage(pageParam, tUserQO);
+		return R.ok(data);
 	}
 
 	/**

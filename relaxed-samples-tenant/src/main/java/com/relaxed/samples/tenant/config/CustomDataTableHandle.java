@@ -27,7 +27,7 @@ public class CustomDataTableHandle implements TableHandler {
 	 */
 	@Override
 	public boolean enable() {
-		return false;
+		return true;
 	}
 
 	/**

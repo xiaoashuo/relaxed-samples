@@ -4,7 +4,6 @@ import cn.hutool.core.collection.ListUtil;
 import com.relaxed.common.tenant.core.table.DataScope;
 import com.relaxed.common.tenant.interceptor.TenantInterceptor;
 import com.relaxed.common.tenant.parse.DefaultSqlParser;
-import com.relaxed.samples.tenant.service.TenantConfigService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +30,6 @@ public class CustomTenantConfiguration {
 	 * @return com.relaxed.common.tenant.interceptor.TenantInterceptor
 	 */
 	@Bean
-	@DependsOn("tenantConfigService")
 	public TenantInterceptor tenantInterceptor() {
 		CustomDataSchemaHandler customDataSchemaHandler = new CustomDataSchemaHandler();
 		// 数据域 主要作为租户列
