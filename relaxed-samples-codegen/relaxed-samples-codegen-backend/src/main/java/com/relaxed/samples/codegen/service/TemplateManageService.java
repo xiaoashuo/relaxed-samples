@@ -7,8 +7,10 @@ import com.relaxed.samples.codegen.model.dto.TemplateGroupDTO;
 import com.relaxed.samples.codegen.model.dto.TemplateInfoDTO;
 import com.relaxed.samples.codegen.model.dto.TemplatePropertyDTO;
 import com.relaxed.samples.codegen.model.entity.TemplateFile;
+import com.relaxed.samples.codegen.model.qo.TemplatePropertyQO;
 import com.relaxed.samples.codegen.model.vo.TemplateGroupVO;
 import com.relaxed.samples.codegen.model.vo.TemplateInfoVO;
+import com.relaxed.samples.codegen.model.vo.TemplatePropertyPageVO;
 import com.relaxed.samples.codegen.model.vo.TemplatePropertyVO;
 
 import java.util.List;
@@ -49,6 +51,17 @@ public interface TemplateManageService {
 	 * @return
 	 */
 	PageResult<TemplateGroupVO> selectTemplateGroupPage(PageParam pageParam, TemplateGroupDTO templateGroupDTO);
+
+	/**
+	 * 查询模板属性page
+	 * @author yakir
+	 * @date 2021/7/31 16:55
+	 * @param pageParam
+	 * @param templatePropertyQO
+	 * @return com.relaxed.common.core.domain.PageResult<com.relaxed.samples.codegen.model.vo.TemplatePropertyPageVO>
+	 */
+	PageResult<TemplatePropertyPageVO> selectTemplatePropertyPage(PageParam pageParam,
+			TemplatePropertyQO templatePropertyQO);
 
 	/**
 	 * 查询模板属性列表 根据模板组id

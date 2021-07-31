@@ -1,5 +1,7 @@
 package com.relaxed.samples.codegen.service.impl;
 
+import cn.hutool.core.util.ArrayUtil;
+import com.relaxed.common.core.exception.BusinessException;
 import com.relaxed.samples.codegen.model.dto.DdlGenerateOptionDTO;
 import com.relaxed.samples.codegen.model.dto.GenerateOptionDTO;
 import com.relaxed.samples.codegen.model.dto.PreGenerateOptionDTO;
@@ -75,6 +77,19 @@ public class GenerateServiceImpl implements GenerateService {
 			}
 		}
 		return outputStream.toByteArray();
+	}
+
+	@Override
+	public Map<String, String> previewCodeByDdl(DdlGenerateOptionDTO generateOptionDTO) throws IOException {
+		List<TemplateFile> templateFiles = templateManageService.selectTemplateFilesByGid(
+				generateOptionDTO.getTemplateGroupId(), generateOptionDTO.getTemplateFileIds());
+		Assert.notEmpty(templateFiles, " template file that does not exist ");
+		GenParse genParse = new GenParse();
+		String[] dcStatements = generateOptionDTO.getDcStatements();
+		Assert.isTrue(!ArrayUtil.isEmpty(dcStatements), "ddl can not be empty.");
+		TableInfoDTO tableInfoDTO = genParse.parseDdl(dcStatements[0]);
+		return GenUtil.previewCodeByDdl(generateOptionDTO, templateFiles, tableInfoDTO.getTableInfo(),
+				tableInfoDTO.getColumnInfos());
 	}
 
 	@Override

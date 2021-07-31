@@ -1,16 +1,26 @@
 package com.relaxed.samples.codegen.service.impl;
 
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.relaxed.common.core.domain.PageParam;
+import com.relaxed.common.core.domain.PageResult;
 import com.relaxed.samples.codegen.mapper.TemplatePropertyMapper;
+import com.relaxed.samples.codegen.model.converter.TemplateGroupConverter;
 import com.relaxed.samples.codegen.model.converter.TemplatePropertyConverter;
+import com.relaxed.samples.codegen.model.entity.TemplateGroup;
 import com.relaxed.samples.codegen.model.entity.TemplateProperty;
+import com.relaxed.samples.codegen.model.qo.TemplatePropertyQO;
+import com.relaxed.samples.codegen.model.vo.TemplateGroupVO;
+import com.relaxed.samples.codegen.model.vo.TemplatePropertyPageVO;
 import com.relaxed.samples.codegen.model.vo.TemplatePropertyVO;
 import com.relaxed.samples.codegen.service.TemplatePropertyService;
+import com.relaxed.samples.codegen.util.PageUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,6 +66,21 @@ public class TemplatePropertyServiceImpl extends ServiceImpl<TemplatePropertyMap
 		// TODO 排序
 
 		return super.page(page, wrapper);
+	}
+
+	@Override
+	public PageResult<TemplatePropertyPageVO> selectByPage(PageParam pageParam, TemplatePropertyQO templatePropertyQO) {
+		IPage<TemplateProperty> page = PageUtil.prodPage(pageParam);
+		LambdaQueryWrapper<TemplateProperty> wrapper = Wrappers.lambdaQuery(TemplateProperty.class)
+				.eq(ObjectUtil.isNotNull(templatePropertyQO.getId()), TemplateProperty::getId,
+						templatePropertyQO.getId())
+				.eq(StrUtil.isNotEmpty(templatePropertyQO.getTitle()), TemplateProperty::getTitle,
+						templatePropertyQO.getTitle())
+				.eq(templatePropertyQO.getGroupId() != null, TemplateProperty::getGroupId,
+						templatePropertyQO.getGroupId());
+		this.baseMapper.selectPage(page, wrapper);
+		IPage<TemplatePropertyPageVO> voPage = page.convert(TemplatePropertyConverter.INSTANCE::poToPageVo);
+		return new PageResult<>(voPage.getRecords(), voPage.getTotal());
 	}
 
 	@Override

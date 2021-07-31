@@ -8,8 +8,10 @@ import com.relaxed.common.core.result.R;
 import com.relaxed.samples.codegen.model.dto.TemplateGroupDTO;
 import com.relaxed.samples.codegen.model.dto.TemplateInfoDTO;
 import com.relaxed.samples.codegen.model.dto.TemplatePropertyDTO;
+import com.relaxed.samples.codegen.model.qo.TemplatePropertyQO;
 import com.relaxed.samples.codegen.model.vo.TemplateGroupVO;
 import com.relaxed.samples.codegen.model.vo.TemplateInfoVO;
+import com.relaxed.samples.codegen.model.vo.TemplatePropertyPageVO;
 import com.relaxed.samples.codegen.model.vo.TemplatePropertyVO;
 import com.relaxed.samples.codegen.service.TemplateManageService;
 import io.swagger.annotations.Api;
@@ -101,6 +103,19 @@ public class TemplateManageController {
 	@GetMapping("/property/list/{templateGroupId}")
 	public R<List<TemplatePropertyVO>> listTemplatePropertyByGid(@PathVariable Integer templateGroupId) {
 		return R.ok(templateManageService.listTemplatePropertyByGid(templateGroupId));
+	}
+
+	/**
+	 * 分页查询
+	 * @param pageParam 分页对象
+	 * @param templatePropertyQO 模板属性配置
+	 * @return R
+	 */
+	@ApiOperation(value = "分页查询", notes = "分页查询")
+	@GetMapping("/property/page")
+	public R<PageResult<TemplatePropertyPageVO>> getTemplatePropertyPage(PageParam pageParam,
+			TemplatePropertyQO templatePropertyQO) {
+		return R.ok(templateManageService.selectTemplatePropertyPage(pageParam, templatePropertyQO));
 	}
 
 	/**

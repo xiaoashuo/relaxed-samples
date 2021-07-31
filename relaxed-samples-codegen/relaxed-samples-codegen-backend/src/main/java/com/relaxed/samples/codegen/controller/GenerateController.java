@@ -22,6 +22,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -103,6 +104,16 @@ public class GenerateController {
 		response.addHeader(HttpHeaders.CONTENT_LENGTH, String.valueOf(data.length));
 		response.setContentType("application/octet-stream; charset=UTF-8");
 		IoUtil.write(response.getOutputStream(), Boolean.TRUE, data);
+	}
+
+	/**
+	 * 生成预览代码
+	 * @param generateOptionDTO
+	 * @return
+	 */
+	@PostMapping("/ddl/preview/code")
+	public R<Map<String, String>> previewCode(@RequestBody DdlGenerateOptionDTO generateOptionDTO) throws IOException {
+		return R.ok(generateService.previewCodeByDdl(generateOptionDTO));
 	}
 
 	/**

@@ -98,6 +98,30 @@ public class GenUtil {
 		}
 	}
 
+	public static Map<String, String> previewCodeByDdl(DdlGenerateOptionDTO generateOptionDTO,
+			List<TemplateFile> templateFiles, TableInfo tableInfo, List<ColumnInfo> columnInfos) throws IOException {
+		Map<String, String> dataMap = new HashMap<>();
+
+		// 生成代码
+		GenerateProperties generateProperties = buildGenerateProperties(tableInfo, columnInfos,
+				generateOptionDTO.getTablePrefix());
+		// 将generateProperties->map
+		Map<String, Object> map = BeanUtil.beanToMap(generateProperties);
+		// 追加用户自定义属性
+		appendCustomAttr(map, generateOptionDTO.getCustomProperties());
+		// 模板渲染
+		VelocityContext context = new VelocityContext(map);
+		for (TemplateFile templateFile : templateFiles) {
+			// 渲染模板
+			StringWriter sw = new StringWriter();
+			Velocity.evaluate(context, sw, tableInfo.getTableName() + templateFile.getFilePath(),
+					templateFile.getContext());
+			dataMap.put(StrUtil.format(templateFile.getFileName(), map), sw.toString());
+			IoUtil.close(sw);
+		}
+		return dataMap;
+	}
+
 	public static Map<String, String> previewCode(TableInfo tableInfo, List<ColumnInfo> columnInfos,
 			List<TemplateFile> templateFiles, String tablePrefix, Map<String, String> customProperties) {
 		Map<String, String> dataMap = new HashMap<>();

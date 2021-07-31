@@ -15,8 +15,10 @@ import com.relaxed.samples.codegen.model.dto.TemplateInfoDTO;
 import com.relaxed.samples.codegen.model.dto.TemplatePropertyDTO;
 import com.relaxed.samples.codegen.model.entity.*;
 import com.relaxed.samples.codegen.model.enums.DirectoryTypeEnum;
+import com.relaxed.samples.codegen.model.qo.TemplatePropertyQO;
 import com.relaxed.samples.codegen.model.vo.TemplateGroupVO;
 import com.relaxed.samples.codegen.model.vo.TemplateInfoVO;
+import com.relaxed.samples.codegen.model.vo.TemplatePropertyPageVO;
 import com.relaxed.samples.codegen.model.vo.TemplatePropertyVO;
 import com.relaxed.samples.codegen.service.*;
 import lombok.RequiredArgsConstructor;
@@ -74,6 +76,12 @@ public class TemplateManageServiceImpl implements TemplateManageService {
 	@Override
 	public PageResult<TemplateGroupVO> selectTemplateGroupPage(PageParam pageParam, TemplateGroupDTO templateGroupDTO) {
 		return templateGroupService.selectByPage(pageParam, templateGroupDTO);
+	}
+
+	@Override
+	public PageResult<TemplatePropertyPageVO> selectTemplatePropertyPage(PageParam pageParam,
+			TemplatePropertyQO templatePropertyQO) {
+		return templatePropertyService.selectByPage(pageParam, templatePropertyQO);
 	}
 
 	@Override
