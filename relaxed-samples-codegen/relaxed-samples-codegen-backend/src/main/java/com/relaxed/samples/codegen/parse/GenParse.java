@@ -63,14 +63,17 @@ public class GenParse extends JsqlParserSupport {
 	}
 
 	private Map<String, String> convertIndexToMap(List<Index> indexes) {
-		Map<String, String> columnIndexMap = new HashMap<>();
-		for (Index index : indexes) {
-			String type = index.getType();
-			List<Index.ColumnParams> columns = index.getColumns();
-			for (Index.ColumnParams column : columns) {
-				columnIndexMap.put(removeBackslash(column.getColumnName()), MysqlIndexTypeConvert.getType(type));
-			}
 
+		Map<String, String> columnIndexMap = new HashMap<>();
+		if (indexes != null) {
+			for (Index index : indexes) {
+				String type = index.getType();
+				List<Index.ColumnParams> columns = index.getColumns();
+				for (Index.ColumnParams column : columns) {
+					columnIndexMap.put(removeBackslash(column.getColumnName()), MysqlIndexTypeConvert.getType(type));
+				}
+
+			}
 		}
 		return columnIndexMap;
 	}
