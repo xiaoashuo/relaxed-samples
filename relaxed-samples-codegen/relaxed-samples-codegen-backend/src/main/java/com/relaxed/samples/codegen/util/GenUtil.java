@@ -2,6 +2,7 @@ package com.relaxed.samples.codegen.util;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.text.StrPool;
 import cn.hutool.core.util.StrUtil;
 
 import com.relaxed.samples.codegen.model.converter.column.MysqlColumnTypeConvert;
@@ -185,11 +186,17 @@ public class GenUtil {
 		GenerateProperties generateProperties = new GenerateProperties();
 
 		// 表名称
-		generateProperties.setTableName(tableInfo.getTableName());
+		String tableName = tableInfo.getTableName();
+		generateProperties.setTableName(tableName);
+		String noPrefixTableName = StrUtil.removePrefixIgnoreCase(tableName, tablePrefix);
+		// 设置controller路径
+		String path = StrUtil.removePrefixIgnoreCase(noPrefixTableName, StrPool.UNDERLINE).replace(StrPool.UNDERLINE,
+				StrPool.SLASH);
+		generateProperties.setPath(path);
 		// 表描述
 		generateProperties.setComments(tableInfo.getTableComment());
 		// 大驼峰类名
-		String className = getClassName(generateProperties.getTableName(), tablePrefix);
+		String className = underlineToCamel(noPrefixTableName);
 		generateProperties.setClassName(className);
 		// 表别名
 		generateProperties.setTableAlias(prodAlias(className));
@@ -207,7 +214,7 @@ public class GenUtil {
 			columnProperties.setExtra(columnInfo.getExtra());
 			columnProperties.setColumnType(columnInfo.getColumnType());
 			// 列名称转换成JAVA属性名
-			String capitalizedAttrName = columnToJava(columnName);
+			String capitalizedAttrName = underlineToCamel(columnName);
 			columnProperties.setCapitalizedAttrName(capitalizedAttrName);
 			columnProperties.setAttrName(StringUtils.uncapitalize(capitalizedAttrName));
 			// 列的数据类型,转换为JAVA类型
@@ -247,7 +254,7 @@ public class GenUtil {
 	/**
 	 * 列名转换成Java属性名
 	 */
-	public static String columnToJava(String columnName) {
+	public static String underlineToCamel(String columnName) {
 		return WordUtils.capitalizeFully(columnName, new char[] { '_' }).replace("_", "");
 	}
 
@@ -258,7 +265,7 @@ public class GenUtil {
 		if (StrUtil.isNotBlank(tablePrefix) && tableName.startsWith(tablePrefix)) {
 			tableName = tableName.substring(tablePrefix.length());
 		}
-		return columnToJava(tableName);
+		return underlineToCamel(tableName);
 	}
 
 }

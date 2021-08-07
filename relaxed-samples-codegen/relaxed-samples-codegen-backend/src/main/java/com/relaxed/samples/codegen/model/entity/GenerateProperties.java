@@ -18,6 +18,11 @@ public class GenerateProperties {
 	private String currentTime;
 
 	/**
+	 * controller 路径 t_code_gen ==> t/code/gen
+	 */
+	private String path;
+
+	/**
 	 * 表名称
 	 */
 	private String tableName;
