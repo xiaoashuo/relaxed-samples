@@ -1,6 +1,6 @@
 package com.relaxed.samples.datascope.controller;
 
-import com.relaxed.common.core.result.R;
+import com.relaxed.common.model.result.R;
 import com.relaxed.samples.datascope.config.UserHolder;
 import com.relaxed.samples.datascope.mapper.UserMapper;
 import com.relaxed.samples.datascope.model.User;

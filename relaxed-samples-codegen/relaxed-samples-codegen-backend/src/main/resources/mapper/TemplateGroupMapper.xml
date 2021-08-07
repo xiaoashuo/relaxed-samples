@@ -11,7 +11,7 @@
     <sql id="Base_Column_List">
     id, `name`, remarks, create_time, update_time
   </sql>
-    <select id="selectAllTemplateGroup" resultType="com.relaxed.common.core.domain.SelectData">
+    <select id="selectAllTemplateGroup" resultType="com.relaxed.common.model.domain.SelectData">
         SELECT  `id` AS `value`,`name` FROM `gen_template_group`
     </select>
 </mapper>

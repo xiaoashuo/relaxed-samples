@@ -1,6 +1,6 @@
 // package com.relaxed.samples.tenant.controller;
 //
-// import com.relaxed.common.core.result.R;
+// import com.relaxed.common.model.result.R;
 //
 // import com.relaxed.samples.tenant.holder.TenantHolder;
 // import lombok.RequiredArgsConstructor;

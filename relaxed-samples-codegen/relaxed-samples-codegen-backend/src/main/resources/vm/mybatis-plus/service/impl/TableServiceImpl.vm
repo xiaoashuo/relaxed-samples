@@ -13,8 +13,8 @@ import ${packageName}.${moduleName}.model.dto.${className}DTO;
 import ${packageName}.${moduleName}.model.entity.${className};
 import ${packageName}.${moduleName}.model.vo.${className}VO;
 
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
 import com.relaxed.extend.mybatis.plus.toolkit.PageUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

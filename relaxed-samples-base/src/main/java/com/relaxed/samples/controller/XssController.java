@@ -2,7 +2,7 @@ package com.relaxed.samples.controller;
 
 import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.relaxed.common.core.result.R;
+import com.relaxed.common.model.result.R;
 import com.relaxed.common.xss.config.XssProperties;
 import com.relaxed.common.xss.json.XssStringJsonDeserializer;
 import lombok.Data;

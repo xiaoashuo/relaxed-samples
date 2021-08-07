@@ -1,10 +1,10 @@
 package com.relaxed.samples.codegen.controller;
 
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
-import com.relaxed.common.core.domain.SelectData;
-import com.relaxed.common.core.result.BaseResultCode;
-import com.relaxed.common.core.result.R;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
+import com.relaxed.common.model.domain.SelectData;
+import com.relaxed.common.model.result.BaseResultCode;
+import com.relaxed.common.model.result.R;
 import com.relaxed.samples.codegen.model.dto.DataSourceConfigDTO;
 import com.relaxed.samples.codegen.model.qo.DataSourceConfigQO;
 import com.relaxed.samples.codegen.model.vo.DataSourceConfigVO;

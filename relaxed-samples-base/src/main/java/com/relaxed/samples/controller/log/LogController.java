@@ -1,6 +1,6 @@
 package com.relaxed.samples.controller.log;
 
-import com.relaxed.common.core.result.R;
+import com.relaxed.common.model.result.R;
 import com.relaxed.common.log.operation.annotation.CreateLog;
 import com.relaxed.common.log.operation.annotation.DeleteLog;
 import com.relaxed.common.log.operation.annotation.Log;

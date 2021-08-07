@@ -4,9 +4,10 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 
 import com.relaxed.common.core.constants.GlobalConstants;
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
-import com.relaxed.common.core.domain.SelectData;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
+
+import com.relaxed.common.model.domain.SelectData;
 import com.relaxed.samples.codegen.model.converter.TemplateGroupConverter;
 import com.relaxed.samples.codegen.model.converter.TemplateInfoConverter;
 import com.relaxed.samples.codegen.model.converter.TemplatePropertyConverter;

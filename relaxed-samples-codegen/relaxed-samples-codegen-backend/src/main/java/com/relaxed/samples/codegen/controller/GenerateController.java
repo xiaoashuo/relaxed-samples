@@ -2,9 +2,9 @@ package com.relaxed.samples.codegen.controller;
 
 import cn.hutool.core.io.IoUtil;
 
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
-import com.relaxed.common.core.result.R;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
+import com.relaxed.common.model.result.R;
 import com.relaxed.samples.codegen.model.dto.DdlGenerateOptionDTO;
 import com.relaxed.samples.codegen.model.dto.GenerateOptionDTO;
 import com.relaxed.samples.codegen.model.dto.PreGenerateOptionDTO;

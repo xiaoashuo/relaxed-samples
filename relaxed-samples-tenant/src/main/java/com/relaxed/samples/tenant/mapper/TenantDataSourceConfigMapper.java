@@ -1,6 +1,6 @@
 package com.relaxed.samples.tenant.mapper;
 
-import com.relaxed.common.core.domain.PageParam;
+import com.relaxed.common.model.domain.PageParam;
 import com.relaxed.extend.mybatis.plus.mapper.ExtendMapper;
 import com.relaxed.samples.tenant.model.entity.TenantDataSourceConfig;
 import com.relaxed.samples.tenant.model.qo.TenantDataSourceConfigQO;

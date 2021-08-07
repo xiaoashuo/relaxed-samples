@@ -8,10 +8,10 @@ import com.relaxed.samples.tenant.model.vo.TUserVO;
 
 import com.relaxed.samples.tenant.service.TUserService;
 
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
-import com.relaxed.common.core.result.BaseResultCode;
-import com.relaxed.common.core.result.R;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
+import com.relaxed.common.model.result.BaseResultCode;
+import com.relaxed.common.model.result.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

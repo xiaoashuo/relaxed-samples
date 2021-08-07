@@ -13,7 +13,7 @@
   <sql id="Base_Column_List">
     id, `name`, username, `password`, url, create_time, update_time
   </sql>
-    <select id="listSelectData" resultType="com.relaxed.common.core.domain.SelectData">
+    <select id="listSelectData" resultType="com.relaxed.common.model.domain.SelectData">
       select name ,name as value
       from gen_data_source_config
     </select>

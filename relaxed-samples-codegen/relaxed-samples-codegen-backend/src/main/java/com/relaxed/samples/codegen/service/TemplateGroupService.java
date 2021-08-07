@@ -1,9 +1,9 @@
 package com.relaxed.samples.codegen.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
-import com.relaxed.common.core.domain.SelectData;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
+import com.relaxed.common.model.domain.SelectData;
 import com.relaxed.samples.codegen.model.dto.TemplateGroupDTO;
 import com.relaxed.samples.codegen.model.entity.TemplateGroup;
 import com.relaxed.samples.codegen.model.vo.TemplateGroupVO;

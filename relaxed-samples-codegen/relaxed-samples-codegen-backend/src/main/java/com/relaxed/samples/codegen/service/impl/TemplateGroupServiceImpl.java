@@ -7,9 +7,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
-import com.relaxed.common.core.domain.SelectData;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
+import com.relaxed.common.model.domain.SelectData;
 import com.relaxed.samples.codegen.mapper.TemplateGroupMapper;
 import com.relaxed.samples.codegen.model.converter.TemplateGroupConverter;
 import com.relaxed.samples.codegen.model.dto.TemplateGroupDTO;

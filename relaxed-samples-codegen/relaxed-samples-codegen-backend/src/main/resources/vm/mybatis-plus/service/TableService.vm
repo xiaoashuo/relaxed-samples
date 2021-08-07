@@ -5,8 +5,8 @@ import ${packageName}.${moduleName}.model.vo.${className}VO;
 import ${packageName}.${moduleName}.model.entity.${className};
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
 
 /**
  * <p>

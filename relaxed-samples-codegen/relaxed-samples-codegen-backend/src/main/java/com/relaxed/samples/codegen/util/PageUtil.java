@@ -3,7 +3,7 @@ package com.relaxed.samples.codegen.util;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.relaxed.common.core.domain.PageParam;
+import com.relaxed.common.model.domain.PageParam;
 
 import java.util.List;
 

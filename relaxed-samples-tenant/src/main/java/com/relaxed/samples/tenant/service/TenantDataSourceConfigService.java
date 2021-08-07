@@ -1,8 +1,8 @@
 package com.relaxed.samples.tenant.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
 import com.relaxed.extend.mybatis.plus.service.ExtendService;
 import com.relaxed.samples.tenant.model.entity.TenantDataSourceConfig;
 import com.relaxed.samples.tenant.model.qo.TenantDataSourceConfigQO;

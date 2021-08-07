@@ -1,6 +1,6 @@
 package com.relaxed.samples.cache.controller;
 
-import com.relaxed.common.core.result.R;
+import com.relaxed.common.model.result.R;
 import com.relaxed.samples.cache.service.CacheService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

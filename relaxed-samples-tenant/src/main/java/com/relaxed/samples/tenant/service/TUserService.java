@@ -7,8 +7,8 @@ import com.relaxed.samples.tenant.model.vo.TUserVO;
 import com.relaxed.samples.tenant.model.entity.TUser;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
 
 /**
  * <p>

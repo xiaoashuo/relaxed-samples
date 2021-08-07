@@ -16,8 +16,8 @@ import com.relaxed.samples.tenant.model.dto.TUserDTO;
 import com.relaxed.samples.tenant.model.entity.TUser;
 import com.relaxed.samples.tenant.model.vo.TUserVO;
 
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
 import com.relaxed.samples.tenant.utils.PageUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

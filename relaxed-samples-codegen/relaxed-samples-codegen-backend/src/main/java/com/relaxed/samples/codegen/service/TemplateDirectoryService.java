@@ -2,8 +2,8 @@ package com.relaxed.samples.codegen.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
 import com.relaxed.samples.codegen.model.entity.TemplateDirectory;
 import com.relaxed.samples.codegen.model.qo.TemplateDirectoryQO;
 import com.relaxed.samples.codegen.model.vo.TemplateDirectoryVO;

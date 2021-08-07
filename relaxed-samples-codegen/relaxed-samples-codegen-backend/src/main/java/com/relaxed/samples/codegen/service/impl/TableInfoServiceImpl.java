@@ -3,8 +3,8 @@ package com.relaxed.samples.codegen.service.impl;
 import com.baomidou.dynamic.datasource.annotation.DS;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
 
 import com.relaxed.samples.codegen.mapper.TableInfoMapper;
 import com.relaxed.samples.codegen.model.entity.ColumnInfo;

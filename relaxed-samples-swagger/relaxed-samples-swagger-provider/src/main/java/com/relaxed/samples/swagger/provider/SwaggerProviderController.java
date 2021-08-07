@@ -1,6 +1,6 @@
 package com.relaxed.samples.swagger.provider;
 
-import com.relaxed.common.core.result.R;
+import com.relaxed.common.model.result.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;

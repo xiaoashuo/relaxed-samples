@@ -11,8 +11,8 @@ import com.relaxed.samples.tenant.model.converter.TenantDataSourceConfigConverte
 import com.relaxed.samples.tenant.model.entity.TenantDataSourceConfig;
 import com.relaxed.samples.tenant.model.qo.TenantDataSourceConfigQO;
 
-import com.relaxed.common.core.domain.PageParam;
-import com.relaxed.common.core.domain.PageResult;
+import com.relaxed.common.model.domain.PageParam;
+import com.relaxed.common.model.domain.PageResult;
 
 import com.relaxed.samples.tenant.model.vo.TenantDataSourceConfigVO;
 import com.relaxed.samples.tenant.service.TenantDataSourceConfigService;
