@@ -26,6 +26,7 @@
       <module>relaxed-samples-datascope</module>
       <module>relaxed-samples-tenant</module>
       <module>relaxed-samples-dynamic-datasource</module>
+        <module>relaxed-samples-security</module>
     </modules>
 
     <!--指定仓库地址-->
