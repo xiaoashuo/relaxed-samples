@@ -1,6 +1,8 @@
 package com.relaxed.samples.security.jwt.controller;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import com.relaxed.common.security.jwt.tookit.SecurityUtils;
+import com.relaxed.samples.security.jwt.model.JwtUser;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +27,46 @@ public class TestController {
 		return "This is my first blog";
 	}
 
-	@PostMapping("add")
-	public void create(@AuthenticationPrincipal UserDetails user) {
+	@PreAuthorize("hasRole('2')")
+	@RequestMapping("role1")
+	public String testRole1() {
+		return "role1 request success!";
+	}
 
+	@PreAuthorize("hasRole('ROLE_1')")
+	@RequestMapping("role2")
+	public String testRole2() {
+		return "role2 request success!";
+	}
+
+	@PreAuthorize("hasRole('ROLE_3')")
+	@RequestMapping("role3")
+	public String testRole3() {
+		return "role3 request success!";
+	}
+
+	@PreAuthorize("hasPermission('edit')")
+	@RequestMapping("permission2")
+	public String testPermission2() {
+		return "permission1 request success!";
+	}
+
+	@PreAuthorize("hasPermission('TestController', 'edit')")
+	@RequestMapping("permission1")
+	public String testPermission1() {
+		return "permission1 request success!";
+	}
+
+	@RequestMapping("permission3")
+	public String testPermission3() {
+		JwtUser user = SecurityUtils.getUser();
+		return "permission3 request success!";
+	}
+
+	@PreAuthorize("@pre.hasPermission('sys:user:view')")
+	@RequestMapping("permission4")
+	public String testCustomPermission() {
+		return "permission3 request success!";
 	}
 
 }

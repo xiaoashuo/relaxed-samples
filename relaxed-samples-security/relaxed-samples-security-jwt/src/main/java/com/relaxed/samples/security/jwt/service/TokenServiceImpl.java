@@ -12,6 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.token.TokenService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.www.NonceExpiredException;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -22,10 +23,12 @@ import java.util.Date;
 /**
  * @author Yakir
  * @Topic TokenServiceImpl
- * @Description
+ * @Description 欲实现token无效化 思路 方式1.token放redis相当于有状态 方式2.加入黑名单机制，每次拦截
+ * 方式3.每个用户用不同密钥，比如token version，当发生修改密码，退出登录。则修改token verion 此时由于token生成规则变化。则导致token失效
  * @date 2021/8/15 12:30
  * @Version 1.0
  */
+@Service
 public class TokenServiceImpl implements JwtTokenService {
 
 	/**

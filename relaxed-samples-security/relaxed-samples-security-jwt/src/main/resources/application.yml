@@ -1,6 +1,8 @@
 spring:
   application:
     name: security-jwt
+  profiles:
+    active: @profiles.active@
 
 logging:
   level:

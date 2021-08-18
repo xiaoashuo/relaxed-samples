@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,7 +21,7 @@ import java.util.Set;
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor
-public class JwtUser implements UserDetails {
+public class JwtUser implements UserDetails, CredentialsContainer {
 
 	private String username;
 
@@ -61,6 +62,14 @@ public class JwtUser implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	/**
+	 * 认证成功后，擦除用户信息密码
+	 */
+	@Override
+	public void eraseCredentials() {
+		this.password = null;
 	}
 
 }
