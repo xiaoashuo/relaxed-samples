@@ -32,7 +32,7 @@ import java.util.Date;
 public class TokenServiceImpl implements JwtTokenService {
 
 	/**
-	 * 刷新间隔5分钟
+	 * 刷新间隔5分钟 过期时间一定要大于刷新时间 因为判断是否刷新 是根据颁发时间回退指定间隔时间
 	 */
 	private static final int tokenRefreshInterval = 300;
 

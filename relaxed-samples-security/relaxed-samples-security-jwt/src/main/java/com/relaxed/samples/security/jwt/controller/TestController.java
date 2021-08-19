@@ -45,12 +45,6 @@ public class TestController {
 		return "role3 request success!";
 	}
 
-	@PreAuthorize("hasPermission('edit')")
-	@RequestMapping("permission2")
-	public String testPermission2() {
-		return "permission1 request success!";
-	}
-
 	@PreAuthorize("hasPermission('TestController', 'edit')")
 	@RequestMapping("permission1")
 	public String testPermission1() {

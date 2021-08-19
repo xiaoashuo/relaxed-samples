@@ -25,8 +25,8 @@ import java.util.Map;
 /**
  * @author Yakir
  * @Topic CustomLoginLogoutController
- * @Description 默认spring security 已经提供登录退出方法了 有login 退出 就直接调用 logout 即可
- * -->LogoutFilter#doFilter 主要职责 清除安全上下文 以及线程环境绑定 等等
+ * @Description 默认spring security 已经提供登录退出方法了 eg： /login /logout
+ * logout-->LogoutFilter#doFilter 主要职责 清除安全上下文 以及线程环境绑定 等等 扩展自定义的登录方法 如下
  * @date 2021/8/18 16:26
  * @Version 1.0
  */

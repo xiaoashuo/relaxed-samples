@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * @author Yakir
  * @Topic JwtUserDetailsServiceImpl
- * @Description
+ * @Description 主要用于从数据库提取用户信息
  * @date 2021/8/15 12:54
  * @Version 1.0
  */
