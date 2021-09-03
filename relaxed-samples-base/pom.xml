@@ -33,20 +33,20 @@
             <groupId>com.lovecyy</groupId>
             <artifactId>relaxed-spring-boot-starter-log</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.lovecyy</groupId>
-            <artifactId>relaxed-spring-boot-starter-job</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.lovecyy</groupId>-->
+<!--            <artifactId>relaxed-spring-boot-starter-job</artifactId>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>com.lovecyy</groupId>
-            <artifactId>relaxed-spring-boot-starter-dingtalk</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.lovecyy</groupId>-->
+<!--            <artifactId>relaxed-spring-boot-starter-dingtalk</artifactId>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>com.lovecyy</groupId>
-            <artifactId>relaxed-spring-boot-starter-mail</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.lovecyy</groupId>-->
+<!--            <artifactId>relaxed-spring-boot-starter-mail</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>com.lovecyy</groupId>

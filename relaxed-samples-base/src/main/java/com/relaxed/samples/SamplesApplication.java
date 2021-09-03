@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.relaxed.common.job.annotation.EnableXxlJob;
 import com.relaxed.common.log.access.annotation.EnableAccessLog;
 import com.relaxed.common.log.operation.annotation.EnableOperationLog;
-import com.relaxed.common.log.operation.event.OperationLogEvent;
 import com.relaxed.common.xss.config.XssProperties;
 import com.relaxed.common.xss.json.XssStringJsonDeserializer;
 import com.relaxed.common.xss.json.XssStringJsonSerializer;
