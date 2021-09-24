@@ -1,0 +1,25 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://admin:123456@localhost:27017/relaxed
+  datasource:
+    url: jdbc:mysql://127.0.0.1:13306/relaxed?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: ''
+  redis:
+    database: 1
+    host: localhost
+    port: 16379
+    password:
+    lettuce:
+      pool:
+        max-idle: 30 #最大空闲连接数
+        min-idle: 0 #最小空闲连接数
+        max-active: 30 #最大连接数
+        max-wait: -1 #最大等待时间
+
+
+
+logging:
+  level:
+    root: debug

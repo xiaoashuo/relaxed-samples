@@ -15,10 +15,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableSwagger2Provider
 @MapperScan(basePackages = "com.relaxed.**.mapper")
 @SpringBootApplication(scanBasePackages = "com.relaxed")
-public class EngineApplication {
+public class RiskEngineApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EngineApplication.class, args);
+		SpringApplication.run(RiskEngineApplication.class, args);
 	}
 
 }

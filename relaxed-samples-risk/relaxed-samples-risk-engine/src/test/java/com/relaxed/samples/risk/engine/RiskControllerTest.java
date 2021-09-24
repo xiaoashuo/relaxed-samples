@@ -7,8 +7,6 @@ import org.springframework.core.io.support.SpringFactoriesLoader;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @author Yakir
  * @Topic RiskControllerTest
@@ -16,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @date 2021/9/7 17:17
  * @Version 1.0
  */
-@SpringBootTest(classes = EngineApplication.class)
+@SpringBootTest(classes = RiskEngineApplication.class)
 class RiskControllerTest {
 
 	@Test

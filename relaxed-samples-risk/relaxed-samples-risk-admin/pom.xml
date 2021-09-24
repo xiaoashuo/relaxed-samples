@@ -21,14 +21,30 @@
             <artifactId>relaxed-common-conf</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-common-risk-biz</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-spring-boot-starter-log</artifactId>
         </dependency>
         <dependency>
             <groupId>com.lovecyy</groupId>
             <artifactId>relaxed-spring-boot-starter-swagger</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
