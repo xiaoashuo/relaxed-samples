@@ -71,8 +71,14 @@ public class AbstractionManageServiceImpl implements AbstractionManageService {
 		Abstraction sqlAbstraction = abstractionService.getById(abstractionId);
 		Assert.notNull(sqlAbstraction, "abstraction can not exists.");
 		if (abstractionService.updateById(abstraction)) {
-			eventDistributor.distribute(SubscribeEnum.PUB_SUB_ABSTRACTION_CHANNEL.getChannel(),
-					JSONUtil.toJsonStr(AbstractionConverter.INSTANCE.poToVo(abstraction)));
+			String abstractionJson = JSONUtil.toJsonStr(AbstractionConverter.INSTANCE.poToVo(abstraction));
+			// 发布订阅 脚本从内存清除
+			if (!sqlAbstraction.getRuleScript().equals(abstraction.getRuleScript())) {
+				eventDistributor.distribute(SubscribeEnum.PUB_SUB_ABSTRACTION_SCRIPT_CHANNEL.getChannel(),
+						abstractionJson);
+			}
+			// 发布订阅信息变动
+			eventDistributor.distribute(SubscribeEnum.PUB_SUB_ABSTRACTION_CHANNEL.getChannel(), abstractionJson);
 			return true;
 		}
 		return false;
@@ -83,8 +89,9 @@ public class AbstractionManageServiceImpl implements AbstractionManageService {
 		Abstraction sqlAbstraction = abstractionService.getById(id);
 		Assert.notNull(sqlAbstraction, "abstraction can not exists.");
 		if (abstractionService.removeById(id)) {
-			eventDistributor.distribute(SubscribeEnum.PUB_SUB_ABSTRACTION_CHANNEL.getChannel(),
-					JSONUtil.toJsonStr(AbstractionConverter.INSTANCE.poToVo(sqlAbstraction)));
+			String jsonConfig = JSONUtil.toJsonStr(AbstractionConverter.INSTANCE.poToVo(sqlAbstraction));
+			eventDistributor.distribute(SubscribeEnum.PUB_SUB_ABSTRACTION_SCRIPT_CHANNEL.getChannel(), jsonConfig);
+			eventDistributor.distribute(SubscribeEnum.PUB_SUB_ABSTRACTION_CHANNEL.getChannel(), jsonConfig);
 			return true;
 		}
 		return false;
