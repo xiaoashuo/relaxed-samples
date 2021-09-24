@@ -1,7 +1,6 @@
 package com.relaxed.samples.risk.engine;
 
 import com.relaxed.common.risk.engine.core.plugins.PluginService;
-import com.relaxed.samples.risk.engine.EngineApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.support.SpringFactoriesLoader;
@@ -20,9 +19,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes = EngineApplication.class)
 class RiskControllerTest {
 
-    @Test
-    public void test(){
-        List<PluginService> pluginServices = SpringFactoriesLoader.loadFactories(PluginService.class, null);
-        System.out.println(pluginServices);
-    }
+	@Test
+	public void test() {
+		List<PluginService> pluginServices = SpringFactoriesLoader.loadFactories(PluginService.class, null);
+		System.out.println(pluginServices);
+	}
+
 }

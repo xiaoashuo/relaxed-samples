@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.support.SpringFactoriesLoader;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,23 +25,22 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/services/risk/v1")
-@Api(value = "RiskApi", tags = {"风险分析API(引擎端)"})
+@Api(value = "RiskApi", tags = { "风险分析API(引擎端)" })
 public class RiskController {
 
-    private final RiskAnalysisEngineService riskAnalysisEngineService;
+	private final RiskAnalysisEngineService riskAnalysisEngineService;
 
-    @ApiOperation(value = "查询事件处理结果")
-    @GetMapping("/getScore")
-    public R getScore(@RequestParam @ApiParam(name="modelGuid",value="模型Guid",required=true)  String modelGuid,
-                      @RequestParam  @ApiParam(name="reqId",value="请求流水号",required=true)  String reqId) {
-        return riskAnalysisEngineService.evaluateReport(modelGuid, reqId);
-    }
+	@ApiOperation(value = "查询事件处理结果")
+	@GetMapping("/getScore")
+	public R getScore(@RequestParam @ApiParam(name = "modelGuid", value = "模型Guid", required = true) String modelGuid,
+			@RequestParam @ApiParam(name = "reqId", value = "请求流水号", required = true) String reqId) {
+		return riskAnalysisEngineService.evaluateReport(modelGuid, reqId);
+	}
 
-    @ApiOperation(value = "事件数据提交接口")
-    @PostMapping("/upload")
-    public R upload(@Valid @RequestBody EventRequest request) {
-        return riskAnalysisEngineService.evaluateRisk(request.getGuid(), request.getReqId(), request.getJsonInfo());
-    }
-
+	@ApiOperation(value = "事件数据提交接口")
+	@PostMapping("/upload")
+	public R upload(@Validated @RequestBody EventRequest request) {
+		return riskAnalysisEngineService.evaluateRisk(request.getGuid(), request.getReqId(), request.getJsonInfo());
+	}
 
 }
