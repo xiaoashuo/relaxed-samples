@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Yakir
  * @Topic EngineApplication
  * @Description
+ * <p>
+ * 风控引擎 核心思路 1.提交事件 2.提取特征 3.机器学习打分 4.决策集模块 (支持多决策集) 一、提取规则 二、计算打分 三、计算总分 四、决定单决策集打分是否通过
+ * </p>
  * @date 2021/9/1 15:11
  * @Version 1.0
  */

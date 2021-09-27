@@ -5,8 +5,8 @@ import com.relaxed.common.core.util.SpringUtils;
 import com.relaxed.common.model.domain.PageParam;
 import com.relaxed.common.model.domain.PageResult;
 
-import com.relaxed.common.risk.biz.distributor.EventDistributor;
-import com.relaxed.common.risk.biz.distributor.subscribe.SubscribeEnum;
+import com.relaxed.common.risk.biz.distributor.event.EventDistributor;
+import com.relaxed.common.risk.biz.distributor.event.subscribe.SubscribeEnum;
 import com.relaxed.common.risk.biz.service.RuleHistoryService;
 import com.relaxed.common.risk.biz.service.RuleService;
 import com.relaxed.common.risk.model.converter.RuleConverter;

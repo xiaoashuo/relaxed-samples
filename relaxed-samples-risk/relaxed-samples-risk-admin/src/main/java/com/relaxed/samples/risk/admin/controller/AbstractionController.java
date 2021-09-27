@@ -7,11 +7,14 @@ import com.relaxed.common.model.result.R;
 import com.relaxed.common.risk.model.entity.Abstraction;
 import com.relaxed.common.risk.model.qo.AbstractionQO;
 import com.relaxed.common.risk.model.vo.AbstractionVO;
+import com.relaxed.samples.risk.admin.model.domain.DataColumn;
 import com.relaxed.samples.risk.admin.service.AbstractionManageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -24,10 +27,20 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("abstraction")
-@Api(tags = "")
+@Api(tags = "特征提取")
 public class AbstractionController {
 
 	private final AbstractionManageService abstractionManageService;
+
+	/**
+	 * 特征列提取
+	 * @param modelId {@link PageParam} 分页参数
+	 */
+	@ApiOperation(value = "特征提取列", notes = "特征提取列")
+	@GetMapping("/columns/{modelId}")
+	public R<List<DataColumn>> dataColumns(@PathVariable Long modelId) {
+		return R.ok(abstractionManageService.selectColumns(modelId));
+	}
 
 	/**
 	 * 分页查询

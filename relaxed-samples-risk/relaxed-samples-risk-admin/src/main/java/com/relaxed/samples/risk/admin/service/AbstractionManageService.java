@@ -5,6 +5,7 @@ import com.relaxed.common.model.domain.PageResult;
 import com.relaxed.common.risk.model.entity.Abstraction;
 import com.relaxed.common.risk.model.qo.AbstractionQO;
 import com.relaxed.common.risk.model.vo.AbstractionVO;
+import com.relaxed.samples.risk.admin.model.domain.DataColumn;
 
 import java.util.List;
 
@@ -60,5 +61,14 @@ public interface AbstractionManageService {
 	 * @return boolean
 	 */
 	boolean del(Long id);
+
+	/**
+	 * 查询特征使用数据列
+	 * @author yakir
+	 * @date 2021/9/26 13:56
+	 * @param modelId
+	 * @return java.util.List<com.relaxed.samples.risk.admin.model.domain.DataColumn>
+	 */
+	List<DataColumn> selectColumns(Long modelId);
 
 }

@@ -43,4 +43,11 @@ public class RiskController {
 		return riskAnalysisEngineService.evaluateRisk(request.getGuid(), request.getReqId(), request.getJsonInfo());
 	}
 
+	@ApiOperation(value = "事件数据提交接口")
+	@PostMapping("/upload/async")
+	public R asyncUpload(@Validated @RequestBody EventRequest request) {
+		return riskAnalysisEngineService.evaluateRiskAsync(request.getGuid(), request.getReqId(),
+				request.getJsonInfo());
+	}
+
 }

@@ -8,10 +8,14 @@ import com.relaxed.common.risk.biz.service.ActivationService;
 import com.relaxed.common.risk.model.entity.Activation;
 import com.relaxed.common.risk.model.qo.ActivationQO;
 import com.relaxed.common.risk.model.vo.ActivationVO;
+import com.relaxed.samples.risk.admin.model.domain.DataColumn;
+import com.relaxed.samples.risk.admin.service.ActivationManageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -27,7 +31,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "决策控制器")
 public class ActivationController {
 
-	private final ActivationService activationService;
+	private final ActivationManageService activationManageService;
 
 	/**
 	 * 分页查询
@@ -38,7 +42,17 @@ public class ActivationController {
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/page")
 	public R<PageResult<ActivationVO>> page(PageParam pageParam, ActivationQO activationQO) {
-		return R.ok(activationService.selectByPage(pageParam, activationQO));
+		return R.ok(activationManageService.selectByPage(pageParam, activationQO));
+	}
+
+	/**
+	 * 特征提取列
+	 * @param modelId {@link PageParam} 分页参数
+	 */
+	@ApiOperation(value = "特征提取列", notes = "特征提取列")
+	@GetMapping("/columns/{modelId}")
+	public R<List<DataColumn>> dataColumns(@PathVariable Long modelId) {
+		return R.ok(activationManageService.selectColumns(modelId));
 	}
 
 	/**
@@ -49,7 +63,8 @@ public class ActivationController {
 	@ApiOperation(value = "新增数据", notes = "新增数据")
 	@PostMapping
 	public R<?> save(@RequestBody Activation activation) {
-		return activationService.add(activation) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增数据失败");
+		return activationManageService.add(activation) ? R.ok()
+				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增数据失败");
 	}
 
 	/**
@@ -60,7 +75,8 @@ public class ActivationController {
 	@ApiOperation(value = "更新数据", notes = "更新数据")
 	@PutMapping
 	public R<?> updateById(@RequestBody Activation activation) {
-		return activationService.edit(activation) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
+		return activationManageService.edit(activation) ? R.ok()
+				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
 	}
 
 	/**
@@ -71,7 +87,7 @@ public class ActivationController {
 	@ApiOperation(value = "根据id删除数据", notes = "根据id删除数据")
 	@DeleteMapping("/{id}")
 	public R<?> removeById(@PathVariable Long id) {
-		return activationService.del(id) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "根据id删除数据失败");
+		return activationManageService.del(id) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "根据id删除数据失败");
 	}
 
 }
