@@ -2,6 +2,10 @@ package com.relaxed.samples.risk.admin.service;
 
 import com.relaxed.common.risk.model.entity.Field;
 import com.relaxed.common.risk.model.entity.PreItem;
+import com.relaxed.common.risk.model.vo.FieldVO;
+import com.relaxed.common.risk.model.vo.PreItemVO;
+
+import java.util.List;
 
 /**
  * @author Yakir
@@ -11,6 +15,15 @@ import com.relaxed.common.risk.model.entity.PreItem;
  * @Version 1.0
  */
 public interface FieldManageService {
+
+	/**
+	 * 根据模型id 查询字段列表
+	 * @author yakir
+	 * @date 2021/9/28 16:24
+	 * @param modelId
+	 * @return java.util.List<com.relaxed.common.risk.model.vo.FieldVO>
+	 */
+	List<FieldVO> fieldListByModelId(Long modelId);
 
 	/**
 	 * 基础字段添加
@@ -38,6 +51,15 @@ public interface FieldManageService {
 	 * @return boolean
 	 */
 	boolean fieldDel(Long id);
+
+	/**
+	 * 获取预处理项列表
+	 * @author yakir
+	 * @date 2021/9/28 16:31
+	 * @param modelId
+	 * @return java.util.List<com.relaxed.common.risk.model.vo.PreItemVO>
+	 */
+	List<PreItemVO> preItemListByModelId(Long modelId);
 
 	/**
 	 * 添加预处理字段

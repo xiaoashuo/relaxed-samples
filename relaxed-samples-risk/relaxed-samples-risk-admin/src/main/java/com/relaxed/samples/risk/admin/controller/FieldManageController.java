@@ -5,13 +5,16 @@ import com.relaxed.common.model.result.R;
 import com.relaxed.common.risk.model.entity.Field;
 import com.relaxed.common.risk.model.entity.PreItem;
 import com.relaxed.common.risk.model.enums.FieldType;
+import com.relaxed.common.risk.model.enums.ValidTypeEnum;
 import com.relaxed.samples.risk.admin.service.FieldManageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,6 +33,25 @@ public class FieldManageController {
 	private final FieldManageService fieldManageService;
 
 	/**
+	 * 验证字段列表
+	 * @author yakir
+	 * @date 2021/9/28 14:50
+	 * @return com.relaxed.common.model.result.R
+	 */
+	@ApiOperation(value = "验证字段列表", notes = "验证字段列表")
+	@GetMapping("/types/validate")
+	public R validateType() {
+		List<Map<String, Object>> fieldTypeList = new ArrayList<>();
+		for (ValidTypeEnum value : ValidTypeEnum.values()) {
+			Map<String, Object> map = new HashMap<>(16);
+			map.put("name", value.name());
+			map.put("desc", value.getDesc());
+			fieldTypeList.add(map);
+		}
+		return R.ok(fieldTypeList);
+	}
+
+	/**
 	 * 字段类型列表
 	 * @author yakir
 	 * @date 2021/9/26 13:37
@@ -38,12 +60,27 @@ public class FieldManageController {
 	@ApiOperation(value = "字段类型列表", notes = "字段类型列表")
 	@GetMapping("/types")
 	public R listFieldTypes() {
-		Map<String, Object> fieldTypes = new HashMap<>(16);
+		List<Map<String, Object>> fieldTypeList = new ArrayList<>();
+
 		for (FieldType value : FieldType.values()) {
-			fieldTypes.put("name", value.name());
-			fieldTypes.put("desc", value.getDesc());
+			Map<String, Object> map = new HashMap<>(16);
+			map.put("name", value.name());
+			map.put("desc", value.getDesc());
+			fieldTypeList.add(map);
 		}
-		return R.ok(fieldTypes);
+		return R.ok(fieldTypeList);
+	}
+
+	/**
+	 * 根据模型id查询字段列表
+	 * @author yakir
+	 * @date 2021/9/28 16:23
+	 * @param modelId
+	 * @return com.relaxed.common.model.result.R<?>
+	 */
+	@GetMapping("/list/{modelId}")
+	public R<?> fieldListByModelId(@PathVariable Long modelId) {
+		return R.ok(fieldManageService.fieldListByModelId(modelId));
 	}
 
 	/**
@@ -80,12 +117,24 @@ public class FieldManageController {
 	}
 
 	/**
+	 * 根据模型id查询预字段列表
+	 * @author yakir
+	 * @date 2021/9/28 16:23
+	 * @param modelId
+	 * @return com.relaxed.common.model.result.R<?>
+	 */
+	@GetMapping("/pre/list/{modelId}")
+	public R<?> preItemListByModelId(@PathVariable Long modelId) {
+		return R.ok(fieldManageService.preItemListByModelId(modelId));
+	}
+
+	/**
 	 * 新增数据
 	 * @param preItem {@link PreItem} 数据参数
 	 * @return {@code R<?>} 通用返回体
 	 */
 	@ApiOperation(value = "预处理字段新增数据", notes = "预处理字段新增数据")
-	@PostMapping
+	@PostMapping("/pre")
 	public R<?> preItemFieldAdd(@RequestBody PreItem preItem) {
 		return fieldManageService.preItemFieldAdd(preItem) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增数据失败");
@@ -97,7 +146,7 @@ public class FieldManageController {
 	 * @return {@code R<?>}通用返回体
 	 */
 	@ApiOperation(value = "预处理字段更新数据", notes = "预处理字段更新数据")
-	@PutMapping
+	@PutMapping("/pre")
 	public R<?> preItemFieldEdit(@RequestBody PreItem preItem) {
 		return fieldManageService.preItemFieldEdit(preItem) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
@@ -110,7 +159,7 @@ public class FieldManageController {
 	 * @return {@code R<?>} 通用返回体
 	 */
 	@ApiOperation(value = "预处理字段根据id删除数据", notes = "预处理字段根据id删除数据")
-	@DeleteMapping("/{modelId}/{id}")
+	@DeleteMapping("/pre/{modelId}/{id}")
 	public R<?> preItemFieldDel(@PathVariable Long modelId, @PathVariable Long id) {
 		return fieldManageService.preItemFieldDel(modelId, id) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "根据id删除数据失败");

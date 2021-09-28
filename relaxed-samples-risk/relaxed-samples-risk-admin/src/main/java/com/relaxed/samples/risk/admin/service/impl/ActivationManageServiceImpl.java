@@ -46,12 +46,6 @@ public class ActivationManageServiceImpl implements ActivationManageService {
 
 	private final ActivationService activationService;
 
-	private final FieldService fieldService;
-
-	private final PreItemService preItemService;
-
-	private final AbstractionService abstractionService;
-
 	private final EventDistributor eventDistributor;
 
 	@Override
@@ -92,54 +86,6 @@ public class ActivationManageServiceImpl implements ActivationManageService {
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public List<DataColumn> selectColumns(Long modelId) {
-		List<DataColumn> dataColumns = new ArrayList<>();
-		// 1.基础字段列
-		DataColumn fieldDataColumn = new DataColumn(DataColumnType.FIELDS.getDesc(), DataColumnType.FIELDS.getName());
-		List<FieldVO> fieldVOS = fieldService.listByModelId(modelId);
-		if (CollectionUtil.isNotEmpty(fieldVOS)) {
-			List<DataColumn> fieldChildren = new ArrayList<>();
-			fieldVOS.forEach(field -> fieldChildren
-					.add(new DataColumn(field.getLabel(), field.getFieldName(), field.getFieldType())));
-			fieldDataColumn.setChildren(fieldChildren);
-		}
-		dataColumns.add(fieldDataColumn);
-		// 2.预处理字段列
-		DataColumn parentPreItemDataColumn = new DataColumn(DataColumnType.PREITEMS.getDesc(),
-				DataColumnType.PREITEMS.getName());
-		List<PreItemVO> preItemVOS = preItemService.listByModelId(modelId);
-		if (CollectionUtil.isNotEmpty(preItemVOS)) {
-			List<DataColumn> preItemChildren = new ArrayList<>();
-			preItemVOS.forEach(preItem -> {
-				DataColumn dataColumn = new DataColumn();
-				dataColumn.setLabel(preItem.getLabel());
-				dataColumn.setValue(preItem.getDestField());
-				dataColumn.setType(preItem.getDestFieldType());
-				preItemChildren.add(dataColumn);
-			});
-
-		}
-		dataColumns.add(parentPreItemDataColumn);
-		// 3. 特征字段提取
-		DataColumn abstractionDataColumn = new DataColumn(DataColumnType.ABSTRACTIONS.getDesc(),
-				DataColumnType.ABSTRACTIONS.getName());
-		List<AbstractionVO> abstractionVOS = abstractionService.listByModelId(modelId);
-		if (CollectionUtil.isNotEmpty(abstractionVOS)) {
-			List<DataColumn> preItemChildren = new ArrayList<>();
-			abstractionVOS.forEach(abstractionVO -> {
-				DataColumn dataColumn = new DataColumn();
-				dataColumn.setLabel(abstractionVO.getLabel());
-				dataColumn.setValue(abstractionVO.getName());
-				dataColumn.setType(FieldType.DOUBLE.name());
-				preItemChildren.add(dataColumn);
-			});
-			abstractionDataColumn.setChildren(preItemChildren);
-		}
-		dataColumns.add(abstractionDataColumn);
-		return dataColumns;
 	}
 
 }

@@ -8,6 +8,7 @@ import com.relaxed.common.risk.biz.service.DataListsService;
 import com.relaxed.common.risk.model.entity.DataLists;
 import com.relaxed.common.risk.model.qo.DataListsQO;
 import com.relaxed.common.risk.model.vo.DataListsVO;
+import com.relaxed.samples.risk.admin.service.DataListManageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +25,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("data/lists")
-@Api(tags = "")
+@Api(tags = "数据列表控制器")
 public class DataListsController {
 
-	private final DataListsService dataListsService;
+	private final DataListManageService dataListManageService;
 
 	/**
 	 * 分页查询
@@ -38,7 +39,7 @@ public class DataListsController {
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/page")
 	public R<PageResult<DataListsVO>> page(PageParam pageParam, DataListsQO dataListsQO) {
-		return R.ok(dataListsService.selectByPage(pageParam, dataListsQO));
+		return R.ok(dataListManageService.selectDataListByPage(pageParam, dataListsQO));
 	}
 
 	/**
@@ -49,7 +50,8 @@ public class DataListsController {
 	@ApiOperation(value = "新增数据", notes = "新增数据")
 	@PostMapping
 	public R<?> save(@RequestBody DataLists dataLists) {
-		return dataListsService.add(dataLists) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增数据失败");
+		return dataListManageService.addDataList(dataLists) ? R.ok()
+				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增数据失败");
 	}
 
 	/**
@@ -60,7 +62,8 @@ public class DataListsController {
 	@ApiOperation(value = "更新数据", notes = "更新数据")
 	@PutMapping
 	public R<?> updateById(@RequestBody DataLists dataLists) {
-		return dataListsService.edit(dataLists) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
+		return dataListManageService.editDataList(dataLists) ? R.ok()
+				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
 	}
 
 	/**
@@ -71,7 +74,8 @@ public class DataListsController {
 	@ApiOperation(value = "根据id删除数据", notes = "根据id删除数据")
 	@DeleteMapping("/{id}")
 	public R<?> removeById(@PathVariable Long id) {
-		return dataListsService.del(id) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "根据id删除数据失败");
+		return dataListManageService.delDataList(id) ? R.ok()
+				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "根据id删除数据失败");
 	}
 
 }

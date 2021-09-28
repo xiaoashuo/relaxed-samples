@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("rule/history")
-@Api(tags = "")
+@Api(tags = "历史规则控制器")
 public class RuleHistoryController {
 
 	private final RuleHistoryService ruleHistoryService;

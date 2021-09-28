@@ -46,16 +46,6 @@ public class ActivationController {
 	}
 
 	/**
-	 * 特征提取列
-	 * @param modelId {@link PageParam} 分页参数
-	 */
-	@ApiOperation(value = "特征提取列", notes = "特征提取列")
-	@GetMapping("/columns/{modelId}")
-	public R<List<DataColumn>> dataColumns(@PathVariable Long modelId) {
-		return R.ok(activationManageService.selectColumns(modelId));
-	}
-
-	/**
 	 * 新增数据
 	 * @param activation {@link Activation} 数据参数
 	 * @return {@code R<?>} 通用返回体

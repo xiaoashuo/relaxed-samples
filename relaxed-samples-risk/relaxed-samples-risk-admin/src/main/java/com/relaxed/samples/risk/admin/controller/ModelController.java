@@ -8,6 +8,7 @@ import com.relaxed.common.risk.biz.service.ModelService;
 import com.relaxed.common.risk.model.entity.Model;
 import com.relaxed.common.risk.model.qo.ModelQO;
 import com.relaxed.common.risk.model.vo.ModelVO;
+import com.relaxed.samples.risk.admin.service.ModelManageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +25,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("model")
-@Api(tags = "")
+@Api(tags = "模型配置")
 public class ModelController {
 
-	private final ModelService modelService;
+	private final ModelManageService modelService;
 
 	/**
 	 * 分页查询
@@ -60,7 +61,7 @@ public class ModelController {
 	@ApiOperation(value = "更新数据", notes = "更新数据")
 	@PutMapping
 	public R<?> updateById(@RequestBody Model model) {
-		return modelService.updateById(model) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
+		return modelService.edit(model) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
 	}
 
 	/**

@@ -7,11 +7,14 @@ import com.relaxed.common.model.result.R;
 import com.relaxed.common.risk.model.entity.Rule;
 import com.relaxed.common.risk.model.qo.RuleQO;
 import com.relaxed.common.risk.model.vo.RuleVO;
+import com.relaxed.samples.risk.admin.model.domain.DataColumn;
 import com.relaxed.samples.risk.admin.service.RuleManageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -24,7 +27,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("rule")
-@Api(tags = "")
+@Api(tags = "规则控制器")
 public class RuleController {
 
 	private final RuleManageService ruleManageService;
@@ -39,6 +42,16 @@ public class RuleController {
 	@GetMapping("/page")
 	public R<PageResult<RuleVO>> page(PageParam pageParam, RuleQO ruleQO) {
 		return R.ok(ruleManageService.selectByPage(pageParam, ruleQO));
+	}
+
+	/**
+	 * 特征提取列
+	 * @param modelId {@link PageParam} 分页参数
+	 */
+	@ApiOperation(value = "特征提取列", notes = "特征提取列")
+	@GetMapping("/columns/{modelId}")
+	public R<List<DataColumn>> dataColumns(@PathVariable Long modelId) {
+		return R.ok(ruleManageService.selectColumns(modelId));
 	}
 
 	/**

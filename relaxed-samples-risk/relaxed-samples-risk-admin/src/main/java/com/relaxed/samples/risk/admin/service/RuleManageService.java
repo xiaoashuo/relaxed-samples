@@ -5,6 +5,9 @@ import com.relaxed.common.model.domain.PageResult;
 import com.relaxed.common.risk.model.entity.Rule;
 import com.relaxed.common.risk.model.qo.RuleQO;
 import com.relaxed.common.risk.model.vo.RuleVO;
+import com.relaxed.samples.risk.admin.model.domain.DataColumn;
+
+import java.util.List;
 
 /**
  * @author Yakir
@@ -22,6 +25,15 @@ public interface RuleManageService {
 	 * @return {@link PageResult<RuleVO>}
 	 */
 	PageResult<RuleVO> selectByPage(PageParam pageParam, RuleQO ruleQO);
+
+	/**
+	 * 查询特征使用数据列
+	 * @author yakir
+	 * @date 2021/9/26 13:56
+	 * @param modelId
+	 * @return java.util.List<com.relaxed.samples.risk.admin.model.domain.DataColumn>
+	 */
+	List<DataColumn> selectColumns(Long modelId);
 
 	/**
 	 * 添加规则

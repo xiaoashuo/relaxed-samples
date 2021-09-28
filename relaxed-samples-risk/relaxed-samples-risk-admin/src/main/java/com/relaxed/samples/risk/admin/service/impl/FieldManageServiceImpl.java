@@ -15,12 +15,15 @@ import com.relaxed.common.risk.model.converter.PreItemConverter;
 import com.relaxed.common.risk.model.entity.Field;
 import com.relaxed.common.risk.model.entity.Model;
 import com.relaxed.common.risk.model.entity.PreItem;
+import com.relaxed.common.risk.model.vo.FieldVO;
+import com.relaxed.common.risk.model.vo.PreItemVO;
 import com.relaxed.samples.risk.admin.service.FieldManageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,6 +45,11 @@ public class FieldManageServiceImpl implements FieldManageService {
 	private final ModelService modelService;
 
 	private final EventDistributor eventDistributor;
+
+	@Override
+	public List<FieldVO> fieldListByModelId(Long modelId) {
+		return fieldService.listByModelId(modelId);
+	}
 
 	@Override
 	public boolean fieldAdd(Field field) {
@@ -87,6 +95,11 @@ public class FieldManageServiceImpl implements FieldManageService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public List<PreItemVO> preItemListByModelId(Long modelId) {
+		return preItemService.listByModelId(modelId);
 	}
 
 	@Override
