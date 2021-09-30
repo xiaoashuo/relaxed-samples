@@ -121,6 +121,11 @@ public class RuleManageServiceImpl implements RuleManageService {
 	}
 
 	@Override
+	public List<RuleVO> listByActivationId(Long activationId) {
+		return ruleService.listByActivationId(activationId);
+	}
+
+	@Override
 	public List<DataColumn> selectColumns(Long modelId) {
 		List<DataColumn> dataColumns = new ArrayList<>();
 		// 1.基础字段列

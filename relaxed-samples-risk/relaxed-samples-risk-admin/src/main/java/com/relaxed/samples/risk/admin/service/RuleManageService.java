@@ -62,4 +62,13 @@ public interface RuleManageService {
 	 */
 	boolean del(Long id);
 
+	/**
+	 * 根据决策id查询所有规则
+	 * @author yakir
+	 * @date 2021/9/29 10:52
+	 * @param activationId
+	 * @return java.util.List<com.relaxed.common.risk.model.vo.RuleVO>
+	 */
+    List<RuleVO> listByActivationId(Long activationId);
+
 }

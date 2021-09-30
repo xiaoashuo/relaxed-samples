@@ -43,6 +43,18 @@ public class RuleController {
 	public R<PageResult<RuleVO>> page(PageParam pageParam, RuleQO ruleQO) {
 		return R.ok(ruleManageService.selectByPage(pageParam, ruleQO));
 	}
+	/**
+	 * 根据决策id查询所有规则
+	 * @author yakir
+	 * @date 2021/9/29 10:53
+	 * @param activationId
+	 * @return com.relaxed.common.model.result.R<java.util.List<com.relaxed.common.risk.model.vo.RuleVO>>
+	 */
+	@ApiOperation(value = "根据决策id查询所有规则", notes = "根据决策id查询所有规则")
+	@GetMapping("/list/{activationId}")
+	public R<List<RuleVO>> listByActivationId(@PathVariable Long activationId) {
+		return R.ok(ruleManageService.listByActivationId(activationId));
+	}
 
 	/**
 	 * 特征提取列
