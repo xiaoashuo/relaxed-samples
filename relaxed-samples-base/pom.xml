@@ -33,24 +33,33 @@
             <groupId>com.lovecyy</groupId>
             <artifactId>relaxed-spring-boot-starter-log</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.lovecyy</groupId>-->
-<!--            <artifactId>relaxed-spring-boot-starter-job</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-spring-boot-starter-job</artifactId>
+        </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.lovecyy</groupId>-->
-<!--            <artifactId>relaxed-spring-boot-starter-dingtalk</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-spring-boot-starter-dingtalk</artifactId>
+        </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.lovecyy</groupId>-->
-<!--            <artifactId>relaxed-spring-boot-starter-mail</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-spring-boot-starter-mail</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.lovecyy</groupId>
             <artifactId>relaxed-spring-boot-starter-sftp</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-spring-boot-starter-s3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
     </dependencies>

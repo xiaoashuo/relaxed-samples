@@ -69,6 +69,6 @@ public interface RuleManageService {
 	 * @param activationId
 	 * @return java.util.List<com.relaxed.common.risk.model.vo.RuleVO>
 	 */
-    List<RuleVO> listByActivationId(Long activationId);
+	List<RuleVO> listByActivationId(Long activationId);
 
 }

@@ -43,6 +43,7 @@ public class RuleController {
 	public R<PageResult<RuleVO>> page(PageParam pageParam, RuleQO ruleQO) {
 		return R.ok(ruleManageService.selectByPage(pageParam, ruleQO));
 	}
+
 	/**
 	 * 根据决策id查询所有规则
 	 * @author yakir

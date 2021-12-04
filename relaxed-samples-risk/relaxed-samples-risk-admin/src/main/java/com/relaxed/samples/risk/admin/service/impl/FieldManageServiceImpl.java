@@ -52,7 +52,6 @@ public class FieldManageServiceImpl implements FieldManageService {
 		return fieldService.listByModelId(modelId);
 	}
 
-
 	@Override
 	public boolean fieldAdd(Field field) {
 		Long modelId = field.getModelId();
@@ -68,7 +67,6 @@ public class FieldManageServiceImpl implements FieldManageService {
 		return false;
 	}
 
-
 	@Override
 	public boolean fieldEdit(Field field) {
 		Field sqlField = fieldService.getById(field.getId());
@@ -80,7 +78,6 @@ public class FieldManageServiceImpl implements FieldManageService {
 		}
 		return false;
 	}
-
 
 	@Override
 	public boolean fieldDel(Long id) {
