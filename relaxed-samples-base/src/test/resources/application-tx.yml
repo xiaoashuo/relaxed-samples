@@ -1,0 +1,10 @@
+relaxed:
+  oss:
+    bucket:
+    accessKey:
+    accessSecret:
+    endpoint: https://cos.ap-shanghai.myqcloud.com
+    pathStyleAccess: false
+    region: ap-shanghai
+
+

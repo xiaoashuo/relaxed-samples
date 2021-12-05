@@ -1,6 +1,0 @@
-relaxed:
-  oss:
-    bucket: test
-    accessKey: yakirsmall
-    accessSecret: yakirsmall
-    domain: http://127.0.0.1:9000
