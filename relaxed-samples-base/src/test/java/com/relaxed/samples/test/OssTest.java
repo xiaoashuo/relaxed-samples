@@ -12,28 +12,36 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.util.Assert;
+import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @SpringBootApplication(scanBasePackages = "com.relaxed.common.oss")
 @SpringBootTest
-@ActiveProfiles("tx")
+@ActiveProfiles("qiniu")
 public class OssTest {
+
+	/**
+	 * 测试用文件名,该文件在测试资源文件夹下
+	 */
+	private static final String TEST_OBJECT_NAME = "test.txt";
 
 	@Autowired
 	private OssClient ossClient;
+
 	@SneakyThrows
 	@Test
 	void txUpload() {
-
 		String relativePath = "tx/test3.jpg";
-		File file = new File("D:\\other\\images\\duola.jpg");
-		InputStream stream = new FileInputStream(file);
-		StreamMeta streamMeta = StreamMeta.convertToByteStreamMeta(stream);
+		FileInputStream fileInputStream = new FileInputStream(
+				ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + TEST_OBJECT_NAME));
+		StreamMeta streamMeta = StreamMeta.convertToByteStreamMeta(fileInputStream);
 		String downloadUrl = ossClient.upload(streamMeta.getInputStream(), streamMeta.getSize(), relativePath);
 		log.info("上传结果:{}", downloadUrl);
 		Assert.state(ossClient.getDownloadUrl(relativePath).equals(downloadUrl), "下载地址不一致");
@@ -55,14 +63,14 @@ public class OssTest {
 	@Test
 	void txDelete() {
 		// 单条删除
-		String relativePath = "tx/test4.jpg";
-		ossClient.delete(relativePath);
+		// String relativePath = "tx/test4.jpg";
+		// ossClient.delete(relativePath);
 
 		// 批量删除
-		// Set<String> paths = new HashSet<>();
-		// paths.add("img/test2.jpg");
-		// paths.add("img/test3.jpg");
-		// ossClient.batchDelete(paths);
+		Set<String> paths = new HashSet<>();
+		paths.add("tx/test3.jpg");
+		paths.add("tx/test4.jpg");
+		ossClient.batchDelete(paths);
 	}
 
 	@SneakyThrows
