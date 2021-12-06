@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Set;
 
 @Slf4j
-@SpringBootApplication(scanBasePackages = "com.relaxed.common.oss")
+@SpringBootApplication(scanBasePackages = { "com.relaxed.samples.test", "com.relaxed.common.oss" })
 @SpringBootTest
 @ActiveProfiles("qiniu")
 public class OssTest {
