@@ -2,12 +2,15 @@ package com.relaxed.samples.controller.log;
 
 import cn.hutool.core.util.URLUtil;
 import com.relaxed.common.core.util.IpUtils;
-import com.relaxed.common.log.constant.LogConstant;
+import com.relaxed.common.core.util.ServletUtils;
+import com.relaxed.common.log.access.utils.LogUtils;
+
+import com.relaxed.common.log.mdc.constant.LogConstant;
 import com.relaxed.common.log.operation.annotation.Log;
 import com.relaxed.common.log.operation.enums.LogStatusEnum;
 
 import com.relaxed.common.log.operation.service.AbstractOperationLogHandler;
-import com.relaxed.common.log.util.LogUtils;
+
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.slf4j.MDC;
@@ -30,7 +33,8 @@ public class OptionLogRecord extends AbstractOperationLogHandler<OperationLog> {
 	@Override
 	public OperationLog buildLog(Log log, ProceedingJoinPoint proceedingJoinPoint) {
 		// 获取 Request
-		HttpServletRequest request = LogUtils.getHttpServletRequest();
+
+		HttpServletRequest request = ServletUtils.getRequest();
 
 		// @formatter:off
         OperationLog operationLog = new OperationLog()

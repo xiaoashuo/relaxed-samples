@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>com.lovecyy</groupId>
-            <artifactId>relaxed-common-conf</artifactId>
+            <artifactId>relaxed-spring-boot-starter-web</artifactId>
         </dependency>
 
 

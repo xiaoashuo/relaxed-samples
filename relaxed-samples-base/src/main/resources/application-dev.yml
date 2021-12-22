@@ -2,8 +2,8 @@ spring:
   mail:
     host: smtp.163.com
     port: 25
-    username: username@163.com
-    password: 123456
+    username: from@163.com
+    password:
     default-encoding: UTF-8
     properties:
       from: from@163.com
@@ -18,6 +18,17 @@ relaxed:
   security:
     xss:
       enabled: true
+  exception:
+    type: MAIL
+    receiveEmails: test@vipsave.cn
+    max: 1
+  oss:
+    bucket:
+    accessKey:
+    accessSecret:
+    endpoint: https://cos.ap-shanghai.myqcloud.com
+    pathStyleAccess: false
+    region: ap-shanghai
 
   dingtalk:
     url: https://oapi.dingtalk.com/robot/send?access_token=b7152491511299a498d5887daf99fbc5b6c5dc5a1a721458752580a9626c7f979
@@ -26,7 +37,7 @@ relaxed:
     host: 127.0.0.1
     port: 22
     username: root
-    password: 123456
+    password:
     sessionConnectTimeout: 15000
     channelConnectedTimeout: 15000
     pool:
@@ -62,7 +73,7 @@ xxl:
       addresses: http://127.0.0.1:9190/xxl-job-admin
     executor:
       appname: xxl-executor-name
-      ip: 192.168.0.102
+      ip:
       ### 执行器运行日志文件存储磁盘路径 [选填] ：需要对该路径拥有读写权限；为空则使用默认路径；
       logpath: /data/applogs/xxl-job/jobhandler
       ### 执行器日志文件保存天数 [选填] ： 过期日志自动清理, 限制值大于等于3时生效; 否则, 如-1, 关闭自动清理功能；
