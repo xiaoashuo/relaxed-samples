@@ -30,6 +30,16 @@
       <module>relaxed-samples-risk</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <!--Mock数据 https://github.com/yindz/common-random-->
+            <dependency>
+                <groupId>com.apifan.common</groupId>
+                <artifactId>common-random</artifactId>
+                <version>1.0.11</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <!--指定仓库地址-->
     <repositories>
         <repository>

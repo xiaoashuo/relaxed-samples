@@ -55,7 +55,7 @@ public class OptionLogRecord extends AbstractOperationLogHandler<OperationLog> {
 
 	@Override
 	public OperationLog fillExecutionInfo(OperationLog operationLog, ProceedingJoinPoint proceedingJoinPoint,
-			long startTime, long endTime, Throwable throwable) {
+			long startTime, long endTime, Object executionResult, Throwable throwable) {
 		long executionTime = endTime - startTime;
 		// 执行时长
 		operationLog.setStartTime(startTime);

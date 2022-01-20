@@ -58,7 +58,15 @@
             <groupId>com.lovecyy</groupId>
             <artifactId>relaxed-spring-boot-starter-s3</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-spring-boot-starter-easyexcel</artifactId>
+        </dependency>
+        <!--Mock数据 https://github.com/yindz/common-random-->
+        <dependency>
+            <groupId>com.apifan.common</groupId>
+            <artifactId>common-random</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
