@@ -76,6 +76,12 @@
             </properties>
         </profile>
         <profile>
+            <id>local</id>
+            <properties>
+                <profiles.active>local</profiles.active>
+            </properties>
+        </profile>
+        <profile>
             <id>prod</id>
             <properties>
                 <profiles.active>prod</profiles.active>
