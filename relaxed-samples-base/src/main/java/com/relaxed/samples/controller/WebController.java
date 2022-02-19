@@ -1,8 +1,15 @@
 package com.relaxed.samples.controller;
 
+import com.relaxed.autoconfigure.exception.ExceptionHandleProperties;
+import com.relaxed.common.exception.notifier.ExceptionNotifier;
+import com.relaxed.common.exception.notifier.MailGlobalExceptionNotifier;
 import com.relaxed.common.model.result.R;
+import com.relaxed.extend.mail.sender.MailSender;
 import com.relaxed.samples.service.WebService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
