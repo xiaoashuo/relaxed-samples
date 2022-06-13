@@ -1,6 +1,5 @@
 package com.relaxed.samples.cache.controller;
 
-import com.relaxed.common.model.result.R;
 import com.relaxed.samples.cache.service.CacheService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +19,28 @@ import org.springframework.web.bind.annotation.RestController;
 public class CacheController {
 
 	private final CacheService cacheService;
+
+	/**
+	 * 根据条件决定是否缓存
+	 * @param key
+	 * @param value
+	 * @param timeout
+	 * @return
+	 */
+	@GetMapping("/set")
+	public String cacheSet(String key, String value, Long timeout) {
+		return cacheService.cacheSet(key, value, timeout);
+	}
+
+	@GetMapping("/get")
+	public String cacheSet(String key) {
+		return cacheService.cacheGet(key);
+	}
+
+	@GetMapping("/delete")
+	public String cacheDelete(String key) {
+		return cacheService.cacheDelete(key);
+	}
 
 	/**
 	 * 根据条件决定是否缓存

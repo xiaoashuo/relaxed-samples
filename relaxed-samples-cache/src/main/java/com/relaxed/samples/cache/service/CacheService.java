@@ -72,4 +72,31 @@ public interface CacheService {
 	 */
 	String noCache(Integer param);
 
+	/**
+	 * 缓存操作
+	 * @param key
+	 * @param param
+	 * @param timeout
+	 * @return
+	 */
+	String cacheSet(String key, String param, Long timeout);
+
+	/**
+	 * 缓存查询
+	 * @author yakir
+	 * @date 2022/6/13 16:00
+	 * @param key
+	 * @return java.lang.String
+	 */
+	String cacheGet(String key);
+
+	/**
+	 * 缓存删除
+	 * @author yakir
+	 * @date 2022/6/13 16:01
+	 * @param key
+	 * @return java.lang.String
+	 */
+	String cacheDelete(String key);
+
 }

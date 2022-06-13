@@ -1,6 +1,7 @@
 package com.relaxed.samples.controller.log;
 
 import cn.hutool.core.util.URLUtil;
+import cn.hutool.json.JSONUtil;
 import com.relaxed.common.core.util.IpUtils;
 import com.relaxed.common.core.util.ServletUtils;
 import com.relaxed.common.log.access.utils.LogUtils;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * @author Yakir
@@ -55,15 +57,16 @@ public class OptionLogRecord extends AbstractOperationLogHandler<OperationLog> {
 
 	@Override
 	public OperationLog fillExecutionInfo(OperationLog operationLog, ProceedingJoinPoint proceedingJoinPoint,
-			long startTime, long endTime, Object returnValue, Throwable throwable) {
-		long executionTime = endTime - startTime;
+			long startTime, long endTime, Throwable throwable, boolean isSaveResult, Object result) {
 		// 执行时长
-		operationLog.setStartTime(startTime);
-		operationLog.setEndTime(endTime);
-		operationLog.setTime(executionTime);
+		operationLog.setTime(endTime - startTime);
 		// 执行状态
 		LogStatusEnum logStatusEnum = throwable == null ? LogStatusEnum.SUCCESS : LogStatusEnum.FAIL;
 		operationLog.setStatus(logStatusEnum.getValue());
+		// 执行结果
+		if (isSaveResult) {
+			Optional.ofNullable(result).ifPresent(x -> operationLog.setResult(JSONUtil.toJsonStr(x)));
+		}
 		return operationLog;
 	}
 

@@ -5,34 +5,38 @@
 
     <parent>
         <groupId>com.lovecyy</groupId>
-         <artifactId>relaxed-samples</artifactId>
+         <artifactId>relaxed-samples-swagger</artifactId>
          <version>${reversion}</version>
     </parent>
 
-    <artifactId>relaxed-samples-cache</artifactId>
+    <artifactId>relaxed-samples-springdoc-provider</artifactId>
+
+    <properties>
+
+    </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.lovecyy</groupId>
-            <artifactId>relaxed-spring-boot-starter-cache</artifactId>
+            <artifactId>relaxed-spring-boot-starter-validate-code</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--springdoc 官方Starter-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.6.6</version>
         </dependency>
 
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -41,4 +45,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

@@ -1,5 +1,7 @@
 package com.relaxed.samples.controller.log;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 import lombok.Data;
@@ -22,13 +24,18 @@ public class OperationLog {
 	/**
 	 * 编号
 	 */
-	@TableId
+	@TableId(value = "id")
 	private Long id;
 
 	/**
 	 * 追踪ID
 	 */
 	private String traceId;
+
+	/**
+	 * 日志消息
+	 */
+	private String channel;
 
 	/**
 	 * 日志消息
@@ -51,7 +58,7 @@ public class OperationLog {
 	private String uri;
 
 	/**
-	 * 请求方法
+	 * 请求方式
 	 */
 	private String method;
 
@@ -59,6 +66,11 @@ public class OperationLog {
 	 * 操作提交的数据
 	 */
 	private String params;
+
+	/**
+	 * 结果数据
+	 */
+	private String result;
 
 	/**
 	 * 操作状态
@@ -71,19 +83,14 @@ public class OperationLog {
 	private Integer type;
 
 	/**
-	 * 开始时间
-	 */
-	private Long startTime;
-
-	/**
-	 * 结束时间
-	 */
-	private Long endTime;
-
-	/**
 	 * 执行时长
 	 */
 	private Long time;
+
+	/**
+	 * 创建者Id
+	 */
+	private String operatorId;
 
 	/**
 	 * 创建者
@@ -93,6 +100,7 @@ public class OperationLog {
 	/**
 	 * 创建时间
 	 */
+	@TableField(value = "create_time", fill = FieldFill.INSERT)
 	private LocalDateTime createTime;
 
 }
