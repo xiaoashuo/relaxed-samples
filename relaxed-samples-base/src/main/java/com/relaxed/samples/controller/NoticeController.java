@@ -5,6 +5,9 @@ import com.baomidou.mybatisplus.annotation.Version;
 import com.relaxed.extend.dingtalk.message.DingTalkTextMessage;
 import com.relaxed.extend.dingtalk.request.DingTalkResponse;
 import com.relaxed.extend.dingtalk.request.DingTalkSender;
+import com.relaxed.extend.wechat.message.WechatTextMessage;
+import com.relaxed.extend.wechat.request.WechatResponse;
+import com.relaxed.extend.wechat.request.WechatSender;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RequiredArgsConstructor
 @RestController
-public class DingTalkController {
+public class NoticeController {
 
+	private final WechatSender wechatSender;
 	private final DingTalkSender dingTalkSender;
 
 	/**
@@ -33,6 +37,20 @@ public class DingTalkController {
 		dingTalkTextMessage.setContent(msg);
 		DingTalkResponse dingTalkResponse = dingTalkSender.sendMessage(dingTalkTextMessage);
 		return dingTalkResponse;
+	}
+
+
+	/**
+	 * 测试wechat发送
+	 * @param msg
+	 * @return
+	 */
+	@GetMapping("wechat/send")
+	public WechatResponse wechatSend(String msg) {
+		WechatTextMessage wechatTextMessage = new WechatTextMessage()
+				.setContent(msg)
+				.atAll();
+		return wechatSender.sendMessage(wechatTextMessage);
 	}
 
 }

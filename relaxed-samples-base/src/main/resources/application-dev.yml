@@ -30,6 +30,8 @@ relaxed:
     pathStyleAccess: false
     region: ap-shanghai
 
+  wechat:
+    url: https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=374efe5a-1223-4457-93c5-d2b
   dingtalk:
     url: https://oapi.dingtalk.com/robot/send?access_token=b7152491511299a498d5887daf99fbc5b6c5dc5a1a721458752580a9626c7f979
     secret: SEC87dcc5c1d2b8a1d94a9cf81a67775aa8578987594a891bf51ce46fb4cf05a119
