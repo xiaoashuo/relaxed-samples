@@ -19,8 +19,11 @@ relaxed:
     xss:
       enabled: true
   exception:
-    type: MAIL
-    receiveEmails: test@vipsave.cn
+    channels:
+      MAIL: true
+      DING_TALK: false
+      WECHAT: true
+    receiveEmails: yushuo@vipsave.cn
     max: 1
   oss:
     bucket:

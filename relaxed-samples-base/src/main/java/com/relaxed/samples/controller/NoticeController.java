@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class NoticeController {
 
 	private final WechatSender wechatSender;
+
 	private final DingTalkSender dingTalkSender;
 
 	/**
@@ -39,7 +40,6 @@ public class NoticeController {
 		return dingTalkResponse;
 	}
 
-
 	/**
 	 * 测试wechat发送
 	 * @param msg
@@ -47,9 +47,7 @@ public class NoticeController {
 	 */
 	@GetMapping("wechat/send")
 	public WechatResponse wechatSend(String msg) {
-		WechatTextMessage wechatTextMessage = new WechatTextMessage()
-				.setContent(msg)
-				.atAll();
+		WechatTextMessage wechatTextMessage = new WechatTextMessage().setContent(msg).atAll();
 		return wechatSender.sendMessage(wechatTextMessage);
 	}
 
