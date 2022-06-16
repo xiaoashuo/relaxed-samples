@@ -21,20 +21,27 @@
             <artifactId>relaxed-spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.lovecyy</groupId>
-            <artifactId>relaxed-spring-boot-starter-validate-code</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!--springdoc 官方Starter-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lovecyy</groupId>
+            <artifactId>relaxed-extend-openapi</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.6</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

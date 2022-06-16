@@ -3,19 +3,13 @@ spring:
     name: doc-provider
 
 
+
 relaxed:
-  vCode:
-    image:
-      enabled: true
-      length: 4
+  openapi:
+    info:
+      title: 测试
+      description: 描述
 
-
-server:
-  port: 9091
-springdoc:
-    swagger-ui:
-      path: /swagger-ui.html
-      enabled: true
 #springdoc:
 #  swagger-ui:
 #    # 修改Swagger UI路径
