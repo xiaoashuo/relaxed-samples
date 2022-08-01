@@ -26,7 +26,6 @@
       <module>relaxed-samples-datascope</module>
       <module>relaxed-samples-tenant</module>
       <module>relaxed-samples-dynamic-datasource</module>
-      <module>relaxed-samples-security</module>
       <module>relaxed-samples-risk</module>
     </modules>
 

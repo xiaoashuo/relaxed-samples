@@ -7,6 +7,8 @@ import com.relaxed.common.cache.annotation.Cached;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author Yakir
  * @Topic CacheServiceImpl
@@ -22,7 +24,7 @@ public class CacheServiceImpl implements CacheService {
 
 	@Override
 	public String cacheSet(String key, String param, Long timeout) {
-		cacheManage.set(key, param, timeout);
+		cacheManage.set(key, param, timeout, TimeUnit.SECONDS);
 		return "OK";
 	}
 

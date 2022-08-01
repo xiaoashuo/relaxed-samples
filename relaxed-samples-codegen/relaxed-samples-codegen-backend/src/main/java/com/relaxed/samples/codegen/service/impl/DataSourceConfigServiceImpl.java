@@ -58,7 +58,8 @@ public class DataSourceConfigServiceImpl extends ServiceImpl<DataSourceConfigMap
 				.select(e -> !e.getColumn().equals("password"));
 		this.baseMapper.selectPage(iPage, queryWrapper);
 		IPage<DataSourceConfigVO> voPage = iPage.convert(DataSourceConfigConverter.INSTANCE::poToVo);
-		return new PageResult<>(voPage.getCurrent(), voPage.getTotal(), voPage.getRecords());
+
+		return new PageResult<>(voPage.getRecords(), voPage.getTotal());
 	}
 
 	@Override

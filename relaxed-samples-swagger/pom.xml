@@ -12,7 +12,6 @@
     <artifactId>relaxed-samples-swagger</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>relaxed-samples-swagger-provider</module>
         <module>relaxed-samples-springdoc-provider</module>
     </modules>
   

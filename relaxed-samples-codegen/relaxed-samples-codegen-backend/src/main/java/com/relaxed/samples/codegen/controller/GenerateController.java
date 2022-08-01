@@ -14,8 +14,8 @@ import com.relaxed.samples.codegen.model.qo.TableInfoQO;
 import com.relaxed.samples.codegen.model.vo.TableInfoVO;
 import com.relaxed.samples.codegen.service.GenerateService;
 import com.relaxed.samples.codegen.service.TableInfoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.http.HttpHeaders;
@@ -31,10 +31,10 @@ import java.util.Map;
  *
  * @author Yakir
  */
-@Api(tags = "代码生成器")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("tool/gen")
+@Tag(name = "代码生成器")
 public class GenerateController {
 
 	private final TableInfoService tableInfoService;
@@ -47,8 +47,8 @@ public class GenerateController {
 	 * @param tableInfoQO 表信息查询对象
 	 * @return R
 	 */
-	@ApiOperation(value = "表信息分页查询", notes = "表信息分页查询")
 	@GetMapping("/table/info/page")
+	@io.swagger.v3.oas.annotations.Operation(summary = "表信息分页查询", description = "表信息分页查询")
 	public R<PageResult<TableInfoVO>> selectTableInfoPage(PageParam pageParam, TableInfoQO tableInfoQO) {
 		return R.ok(tableInfoService.selectTableByPage(pageParam, tableInfoQO));
 	}
@@ -68,8 +68,8 @@ public class GenerateController {
 	 * @param tableName {@code tableName}
 	 * @return {@code R<List<ColumnInfo>>}
 	 */
-	@ApiOperation(value = "表列信息列表", notes = "表列信息列表")
 	@GetMapping("/table/column/list")
+	@io.swagger.v3.oas.annotations.Operation(summary = "表列信息列表", description = "表列信息列表")
 	public R<List<ColumnInfo>> selectColumnList(@RequestParam(value = "tableName") String tableName) {
 		return R.ok(tableInfoService.listColumnInfo(tableName));
 	}

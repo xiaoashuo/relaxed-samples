@@ -50,10 +50,6 @@
             <artifactId>velocity</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.lovecyy</groupId>
-            <artifactId>relaxed-spring-boot-starter-swagger</artifactId>
-        </dependency>
 
 
     </dependencies>

@@ -68,7 +68,7 @@ public class RuleManageServiceImpl implements RuleManageService {
 		Assert.isNull(sqlRule, "rule has already exists.");
 		rule.setStatus(ModelEnums.StatusEnum.INIT.getStatus());
 		if (ruleService.save(rule)) {
-			SpringUtils.publishEvent(new RuleChangeEvent(convertToRuleHistory(rule)));
+			SpringUtils.getContext().publishEvent(new RuleChangeEvent(convertToRuleHistory(rule)));
 			// 发布订阅
 			eventDistributor.distribute(SubscribeEnum.PUB_SUB_RULE_CHANNEL.getChannel(),
 					JSONUtil.toJsonStr(RuleConverter.INSTANCE.poToVo(rule)));
@@ -97,7 +97,7 @@ public class RuleManageServiceImpl implements RuleManageService {
 		Rule sqlRule = ruleService.getById(rule.getId());
 		Assert.notNull(sqlRule, "rule  can not exists.");
 		if (ruleService.updateById(rule)) {
-			SpringUtils.publishEvent(new RuleChangeEvent(convertToRuleHistory(rule)));
+			SpringUtils.getContext().publishEvent(new RuleChangeEvent(convertToRuleHistory(rule)));
 			String ruleJson = JSONUtil.toJsonStr(RuleConverter.INSTANCE.poToVo(rule));
 			if (!sqlRule.getScripts().equals(rule.getScripts())) {
 				eventDistributor.distribute(SubscribeEnum.PUB_SUB_RULE_SCRIPT_CHANNEL.getChannel(), ruleJson);

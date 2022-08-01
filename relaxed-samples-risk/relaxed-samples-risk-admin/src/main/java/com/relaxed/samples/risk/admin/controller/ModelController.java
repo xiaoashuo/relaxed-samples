@@ -9,8 +9,8 @@ import com.relaxed.common.risk.model.entity.Model;
 import com.relaxed.common.risk.model.qo.ModelQO;
 import com.relaxed.common.risk.model.vo.ModelVO;
 import com.relaxed.samples.risk.admin.service.ModelManageService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("model")
-@Api(tags = "模型配置")
+@Tag(name = "模型配置")
 public class ModelController {
 
 	private final ModelManageService modelService;
@@ -36,8 +36,8 @@ public class ModelController {
 	 * @param modelQO {@link ModelQO} 查询条件
 	 * @return @{code R<PageResult<ModelVO>>} 通用返回体
 	 */
-	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/page")
+	@io.swagger.v3.oas.annotations.Operation(summary = "分页查询", description = "分页查询")
 	public R<PageResult<ModelVO>> page(PageParam pageParam, ModelQO modelQO) {
 		return R.ok(modelService.selectByPage(pageParam, modelQO));
 	}
@@ -47,8 +47,8 @@ public class ModelController {
 	 * @param model {@link Model} 数据参数
 	 * @return {@code R<?>} 通用返回体
 	 */
-	@ApiOperation(value = "新增数据", notes = "新增数据")
 	@PostMapping
+	@io.swagger.v3.oas.annotations.Operation(summary = "新增数据", description = "新增数据")
 	public R<?> save(@RequestBody Model model) {
 		return modelService.add(model) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增数据失败");
 	}
@@ -58,8 +58,8 @@ public class ModelController {
 	 * @param model {@link Model} 更新数据
 	 * @return {@code R<?>}通用返回体
 	 */
-	@ApiOperation(value = "更新数据", notes = "更新数据")
 	@PutMapping
+	@io.swagger.v3.oas.annotations.Operation(summary = "更新数据", description = "更新数据")
 	public R<?> updateById(@RequestBody Model model) {
 		return modelService.edit(model) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
 	}
@@ -69,8 +69,8 @@ public class ModelController {
 	 * @param id {@code id} id
 	 * @return {@code R<?>} 通用返回体
 	 */
-	@ApiOperation(value = "根据id删除数据", notes = "根据id删除数据")
 	@DeleteMapping("/{id}")
+	@io.swagger.v3.oas.annotations.Operation(summary = "根据id删除数据", description = "根据id删除数据")
 	public R<?> removeById(@PathVariable Long id) {
 		return modelService.del(id) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "根据id删除数据失败");
 	}

@@ -15,8 +15,8 @@ import com.relaxed.samples.codegen.model.vo.TemplateInfoVO;
 import com.relaxed.samples.codegen.model.vo.TemplatePropertyPageVO;
 import com.relaxed.samples.codegen.model.vo.TemplatePropertyVO;
 import com.relaxed.samples.codegen.service.TemplateManageService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,10 +27,10 @@ import java.util.List;
  *
  * @author Yakir
  */
-@Api(tags = "模板管理")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/tool/tpl")
+@Tag(name = "模板管理")
 public class TemplateManageController {
 
 	private final TemplateManageService templateManageService;
@@ -40,8 +40,8 @@ public class TemplateManageController {
 	 * @param templateGroupDTO {@code templateGroupDTO}
 	 * @return {@code R<?>}
 	 */
-	@ApiOperation(value = "新增模板组", notes = "新增模板组")
 	@PostMapping("/group")
+	@io.swagger.v3.oas.annotations.Operation(summary = "新增模板组", description = "新增模板组")
 	public R<?> saveTemplateGroup(@RequestBody TemplateGroupDTO templateGroupDTO) {
 		return templateManageService.saveTemplateGroup(templateGroupDTO) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增模板组失败");
@@ -52,8 +52,8 @@ public class TemplateManageController {
 	 * @param templateGroupId {@code Long}
 	 * @return {@link R}
 	 */
-	@ApiOperation(value = "删除模板组", notes = "删除模板组")
 	@DeleteMapping("/group/remove/{templateGroupId}")
+	@io.swagger.v3.oas.annotations.Operation(summary = "删除模板组", description = "删除模板组")
 	public R<?> removeTempLateGroupById(@PathVariable Long templateGroupId) {
 		// 业务逻辑
 		return templateManageService.removeTemplateGroupById(templateGroupId) ? R.ok()
@@ -65,8 +65,8 @@ public class TemplateManageController {
 	 * @param templateGroupDTO {@link TemplateGroupDTO}
 	 * @return {@link R}
 	 */
-	@ApiOperation(value = "修改模板组", notes = "修改模板组")
 	@PutMapping("/group/update")
+	@io.swagger.v3.oas.annotations.Operation(summary = "修改模板组", description = "修改模板组")
 	public R<?> updateTemplateGroupById(@RequestBody TemplateGroupDTO templateGroupDTO) {
 		return templateManageService.updateTemplateGroupById(templateGroupDTO) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "修改模板组失败");
@@ -78,8 +78,8 @@ public class TemplateManageController {
 	 * @param templateGroupDTO
 	 * @return
 	 */
-	@ApiOperation(value = "模板组分页查询", notes = "模板组分页查询")
 	@GetMapping("/group/page")
+	@io.swagger.v3.oas.annotations.Operation(summary = "模板组分页查询", description = "模板组分页查询")
 	public R<PageResult<TemplateGroupVO>> selectTemplateGroupPage(PageParam pageParam,
 			TemplateGroupDTO templateGroupDTO) {
 		return R.ok(templateManageService.selectTemplateGroupPage(pageParam, templateGroupDTO));
@@ -87,10 +87,10 @@ public class TemplateManageController {
 
 	/**
 	 * 查询所有模板组
-	 * @return {@link R<List<SelectData<?>>>}
+	 * @return {@link R < List < SelectData <?>>>}
 	 */
-	@ApiOperation(value = "模板组列表", notes = "模板组列表")
 	@GetMapping("/group/all")
+	@io.swagger.v3.oas.annotations.Operation(summary = "模板组列表", description = "模板组列表")
 	public R<List<SelectData<?>>> selectAllTemplateGroup() {
 		return R.ok(templateManageService.selectAllTemplateGroup());
 	}
@@ -98,10 +98,10 @@ public class TemplateManageController {
 	/**
 	 * 查询属性列表根据模板组id
 	 * @param templateGroupId {@code templateGroupId}
-	 * @return {@link R<List<TemplatePropertyVO>> }
+	 * @return {@link R < List < TemplatePropertyVO >> }
 	 */
-	@ApiOperation(value = "模板属性列表", notes = "模板属性列表")
 	@GetMapping("/property/list/{templateGroupId}")
+	@io.swagger.v3.oas.annotations.Operation(summary = "模板属性列表", description = "模板属性列表")
 	public R<List<TemplatePropertyVO>> listTemplatePropertyByGid(@PathVariable Integer templateGroupId) {
 		return R.ok(templateManageService.listTemplatePropertyByGid(templateGroupId));
 	}
@@ -112,8 +112,8 @@ public class TemplateManageController {
 	 * @param templatePropertyQO 模板属性配置
 	 * @return R
 	 */
-	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/property/page")
+	@io.swagger.v3.oas.annotations.Operation(summary = "分页查询", description = "分页查询")
 	public R<PageResult<TemplatePropertyPageVO>> getTemplatePropertyPage(PageParam pageParam,
 			TemplatePropertyQO templatePropertyQO) {
 		return R.ok(templateManageService.selectTemplatePropertyPage(pageParam, templatePropertyQO));
@@ -124,8 +124,8 @@ public class TemplateManageController {
 	 * @param templatePropertyDTO {@link TemplatePropertyDTO}
 	 * @return {@code R<?>}
 	 */
-	@ApiOperation(value = "新增模板属性", notes = "新增模板属性")
 	@PostMapping("/property")
+	@io.swagger.v3.oas.annotations.Operation(summary = "新增模板属性", description = "新增模板属性")
 	public R<?> saveTemplateProperty(@RequestBody TemplatePropertyDTO templatePropertyDTO) {
 		return templateManageService.saveTemplateProperty(templatePropertyDTO) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增模板属性失败");
@@ -136,8 +136,8 @@ public class TemplateManageController {
 	 * @param templatePropertyId {@code Long}
 	 * @return {@link R}
 	 */
-	@ApiOperation(value = "删除模板属性", notes = "删除模板属性")
 	@DeleteMapping("/property/remove/{templatePropertyId}")
+	@io.swagger.v3.oas.annotations.Operation(summary = "删除模板属性", description = "删除模板属性")
 	public R<?> removeTempLatePropertyById(@PathVariable Long templatePropertyId) {
 		return templateManageService.removeTempLatePropertyById(templatePropertyId) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "通过id删除模板属性失败");
@@ -148,8 +148,8 @@ public class TemplateManageController {
 	 * @param templatePropertyDTO {@link TemplatePropertyDTO}
 	 * @return {@link R}
 	 */
-	@ApiOperation(value = "修改模板属性", notes = "修改模板属性")
 	@PutMapping("/property/update")
+	@io.swagger.v3.oas.annotations.Operation(summary = "修改模板属性", description = "修改模板属性")
 	public R<?> updateTemplatePropertyById(@RequestBody TemplatePropertyDTO templatePropertyDTO) {
 		return templateManageService.updateTemplatePropertyById(templatePropertyDTO) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "修改模板属性失败");
@@ -160,8 +160,8 @@ public class TemplateManageController {
 	 * @param templateInfoDTO {@link TemplateInfoDTO}
 	 * @return {@code R<?>}
 	 */
-	@ApiOperation(value = "新增模板信息", notes = "新增模板信息")
 	@PostMapping("/info")
+	@io.swagger.v3.oas.annotations.Operation(summary = "新增模板信息", description = "新增模板信息")
 	public R<?> saveTemplateInfo(@RequestBody TemplateInfoDTO templateInfoDTO) {
 		return templateManageService.saveTemplateInfo(templateInfoDTO) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增模板信息失败");
@@ -172,8 +172,8 @@ public class TemplateManageController {
 	 * @param templateInfoId {@code Long}
 	 * @return {@link R}
 	 */
-	@ApiOperation(value = "删除模板信息", notes = "删除模板信息")
 	@DeleteMapping("/info/remove/{templateInfoId}")
+	@io.swagger.v3.oas.annotations.Operation(summary = "删除模板信息", description = "删除模板信息")
 	public R<?> removeTempLateInfoById(@PathVariable Long templateInfoId) {
 		return templateManageService.removeTempLateInfoById(templateInfoId) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "通过id删除模板信息失败");
@@ -184,8 +184,8 @@ public class TemplateManageController {
 	 * @param templateInfoDTO {@link TemplateInfoDTO}
 	 * @return {@link R}
 	 */
-	@ApiOperation(value = "修改模板信息", notes = "修改模板信息")
 	@PutMapping("/info/update")
+	@io.swagger.v3.oas.annotations.Operation(summary = "修改模板信息", description = "修改模板信息")
 	public R<?> updateTemplateInfoById(@RequestBody TemplateInfoDTO templateInfoDTO) {
 		return templateManageService.updateTemplateInfoById(templateInfoDTO) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "修改模板信息失败");
@@ -194,10 +194,10 @@ public class TemplateManageController {
 	/**
 	 * 获取模板信息列表
 	 * @param templateGroupId
-	 * @return {@link R<List<TemplateInfoVO>>}
+	 * @return {@link R < List < TemplateInfoVO >>}
 	 */
-	@ApiOperation(value = "模板信息列表", notes = "模板信息列表")
 	@GetMapping("/info/list/{templateGroupId}")
+	@io.swagger.v3.oas.annotations.Operation(summary = "模板信息列表", description = "模板信息列表")
 	public R<List<TemplateInfoVO>> listTemplateInfos(@PathVariable Integer templateGroupId) {
 		return R.ok(templateManageService.listTemplateInfosByGid(templateGroupId));
 	}

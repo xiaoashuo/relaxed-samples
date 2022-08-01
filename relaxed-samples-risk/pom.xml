@@ -18,7 +18,36 @@
     <modules>
         <module>relaxed-samples-risk-engine</module>
         <module>relaxed-samples-risk-admin</module>
+        <module>relaxed-common-risk-engine</module>
+        <module>relaxed-common-risk-model</module>
+        <module>relaxed-common-risk-repository</module>
+        <module>relaxed-common-risk-biz</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.lovecyy</groupId>
+                <artifactId>relaxed-common-risk-model</artifactId>
+                <version>${reversion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lovecyy</groupId>
+                <artifactId>relaxed-common-risk-repository</artifactId>
+                <version>${reversion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lovecyy</groupId>
+                <artifactId>relaxed-common-risk-biz</artifactId>
+                <version>${reversion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lovecyy</groupId>
+                <artifactId>relaxed-common-risk-engine</artifactId>
+                <version>${reversion}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
 </project>

@@ -5,10 +5,12 @@ spring:
 
 
 relaxed:
-  openapi:
-    info:
-      title: 测试
-      description: 描述
+#  openapi:
+#    info:
+#      title: 测试
+#      description: 描述
+
+
 
 #springdoc:
 #  swagger-ui:

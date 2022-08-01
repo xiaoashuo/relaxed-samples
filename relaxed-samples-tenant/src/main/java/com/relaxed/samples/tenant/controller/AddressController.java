@@ -10,8 +10,8 @@ import com.relaxed.common.model.domain.PageParam;
 import com.relaxed.common.model.domain.PageResult;
 import com.relaxed.common.model.result.BaseResultCode;
 import com.relaxed.common.model.result.R;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/address")
-@Api(tags = "地址服务")
+@Tag(name = "地址服务")
 public class AddressController {
 
 	private final AddressService addressService;
@@ -37,8 +37,8 @@ public class AddressController {
 	 * @param addressQO {@link AddressQO} 查询条件
 	 * @return @{code R<PageResult<AddressVO>>} 通用返回体
 	 */
-	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/page")
+	@io.swagger.v3.oas.annotations.Operation(summary = "分页查询", description = "分页查询")
 	public R<PageResult<AddressVO>> page(PageParam pageParam, AddressQO addressQO) {
 		return R.ok(addressService.selectByPage(pageParam, addressQO));
 	}
@@ -48,8 +48,8 @@ public class AddressController {
 	 * @param address {@link Address} 数据参数
 	 * @return {@code R<?>} 通用返回体
 	 */
-	@ApiOperation(value = "新增数据", notes = "新增数据")
 	@PostMapping
+	@io.swagger.v3.oas.annotations.Operation(summary = "新增数据", description = "新增数据")
 	public R<?> save(@RequestBody Address address) {
 		return addressService.save(address) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增数据失败");
 	}
@@ -59,8 +59,8 @@ public class AddressController {
 	 * @param address {@link Address} 更新数据
 	 * @return {@code R<?>}通用返回体
 	 */
-	@ApiOperation(value = "更新数据", notes = "更新数据")
 	@PutMapping
+	@io.swagger.v3.oas.annotations.Operation(summary = "更新数据", description = "更新数据")
 	public R<?> updateById(@RequestBody Address address) {
 		return addressService.updateById(address) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
 	}
@@ -70,8 +70,8 @@ public class AddressController {
 	 * @param id {@code id} id
 	 * @return {@code R<?>} 通用返回体
 	 */
-	@ApiOperation(value = "根据id删除数据", notes = "根据id删除数据")
 	@DeleteMapping("/{id}")
+	@io.swagger.v3.oas.annotations.Operation(summary = "根据id删除数据", description = "根据id删除数据")
 	public R<?> removeById(@PathVariable Long id) {
 		return addressService.removeById(id) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "根据id删除数据失败");
 	}

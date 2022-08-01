@@ -7,8 +7,8 @@ import com.relaxed.common.risk.model.entity.PreItem;
 import com.relaxed.common.risk.model.enums.FieldType;
 import com.relaxed.common.risk.model.enums.ValidTypeEnum;
 import com.relaxed.samples.risk.admin.service.FieldManageService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +27,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("field")
-@Api(tags = "字段管理")
+@Tag(name = "字段管理")
 public class FieldManageController {
 
 	private final FieldManageService fieldManageService;
@@ -38,8 +38,8 @@ public class FieldManageController {
 	 * @date 2021/9/28 14:50
 	 * @return com.relaxed.common.model.result.R
 	 */
-	@ApiOperation(value = "验证字段列表", notes = "验证字段列表")
 	@GetMapping("/types/validate")
+	@io.swagger.v3.oas.annotations.Operation(summary = "验证字段列表", description = "验证字段列表")
 	public R validateType() {
 		List<Map<String, Object>> fieldTypeList = new ArrayList<>();
 		for (ValidTypeEnum value : ValidTypeEnum.values()) {
@@ -57,8 +57,8 @@ public class FieldManageController {
 	 * @date 2021/9/26 13:37
 	 * @return com.relaxed.common.model.result.R
 	 */
-	@ApiOperation(value = "字段类型列表", notes = "字段类型列表")
 	@GetMapping("/types")
+	@io.swagger.v3.oas.annotations.Operation(summary = "字段类型列表", description = "字段类型列表")
 	public R listFieldTypes() {
 		List<Map<String, Object>> fieldTypeList = new ArrayList<>();
 
@@ -88,8 +88,8 @@ public class FieldManageController {
 	 * @param field {@link Field} 数据参数
 	 * @return {@code R<?>} 通用返回体
 	 */
-	@ApiOperation(value = "原始字段新增数据", notes = "原始字段新增数据")
 	@PostMapping
+	@io.swagger.v3.oas.annotations.Operation(summary = "原始字段新增数据", description = "原始字段新增数据")
 	public R<?> fieldAdd(@RequestBody Field field) {
 		return fieldManageService.fieldAdd(field) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增数据失败");
 	}
@@ -99,8 +99,8 @@ public class FieldManageController {
 	 * @param field {@link Field} 更新数据
 	 * @return {@code R<?>}通用返回体
 	 */
-	@ApiOperation(value = "原始字段更新数据", notes = "原始字段更新数据")
 	@PutMapping
+	@io.swagger.v3.oas.annotations.Operation(summary = "原始字段更新数据", description = "原始字段更新数据")
 	public R<?> fieldEdit(@RequestBody Field field) {
 		return fieldManageService.fieldEdit(field) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
 	}
@@ -110,8 +110,8 @@ public class FieldManageController {
 	 * @param id {@code id} id
 	 * @return {@code R<?>} 通用返回体
 	 */
-	@ApiOperation(value = "原始字段根据id删除数据", notes = "原始字段根据id删除数据")
 	@DeleteMapping("/{id}")
+	@io.swagger.v3.oas.annotations.Operation(summary = "原始字段根据id删除数据", description = "原始字段根据id删除数据")
 	public R<?> fieldDel(@PathVariable Long id) {
 		return fieldManageService.fieldDel(id) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "根据id删除数据失败");
 	}
@@ -133,8 +133,8 @@ public class FieldManageController {
 	 * @param preItem {@link PreItem} 数据参数
 	 * @return {@code R<?>} 通用返回体
 	 */
-	@ApiOperation(value = "预处理字段新增数据", notes = "预处理字段新增数据")
 	@PostMapping("/pre")
+	@io.swagger.v3.oas.annotations.Operation(summary = "预处理字段新增数据", description = "预处理字段新增数据")
 	public R<?> preItemFieldAdd(@RequestBody PreItem preItem) {
 		return fieldManageService.preItemFieldAdd(preItem) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增数据失败");
@@ -145,8 +145,8 @@ public class FieldManageController {
 	 * @param preItem {@link PreItem} 更新数据
 	 * @return {@code R<?>}通用返回体
 	 */
-	@ApiOperation(value = "预处理字段更新数据", notes = "预处理字段更新数据")
 	@PutMapping("/pre")
+	@io.swagger.v3.oas.annotations.Operation(summary = "预处理字段更新数据", description = "预处理字段更新数据")
 	public R<?> preItemFieldEdit(@RequestBody PreItem preItem) {
 		return fieldManageService.preItemFieldEdit(preItem) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
@@ -158,8 +158,8 @@ public class FieldManageController {
 	 * @param id {@code id} id
 	 * @return {@code R<?>} 通用返回体
 	 */
-	@ApiOperation(value = "预处理字段根据id删除数据", notes = "预处理字段根据id删除数据")
 	@DeleteMapping("/pre/{modelId}/{id}")
+	@io.swagger.v3.oas.annotations.Operation(summary = "预处理字段根据id删除数据", description = "预处理字段根据id删除数据")
 	public R<?> preItemFieldDel(@PathVariable Long modelId, @PathVariable Long id) {
 		return fieldManageService.preItemFieldDel(modelId, id) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "根据id删除数据失败");

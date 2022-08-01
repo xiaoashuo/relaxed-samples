@@ -11,8 +11,8 @@ import com.relaxed.common.model.domain.PageResult;
 import com.relaxed.common.model.result.BaseResultCode;
 import com.relaxed.common.model.result.R;
 import com.relaxed.samples.risk.admin.service.PluginManageService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +29,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("plugin")
-@Api(tags = "插件管理")
+@Tag(name = "插件管理")
 public class PluginController {
 
 	private final PluginManageService pluginService;
@@ -40,8 +40,8 @@ public class PluginController {
 	 * @param pluginQO {@link PluginQO} 查询条件
 	 * @return @{code R<PageResult<PluginVO>>} 通用返回体
 	 */
-	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/page")
+	@io.swagger.v3.oas.annotations.Operation(summary = "分页查询", description = "分页查询")
 	public R<PageResult<PluginVO>> page(PageParam pageParam, PluginQO pluginQO) {
 		return R.ok(pluginService.selectByPage(pageParam, pluginQO));
 	}
@@ -52,8 +52,8 @@ public class PluginController {
 	 * @date 2021/9/28 13:53
 	 * @return com.relaxed.common.model.result.R<java.util.List<com.relaxed.common.risk.model.vo.PluginVO>>
 	 */
-	@ApiOperation(value = "获取所有启用插件", notes = "获取所有启用插件")
 	@GetMapping("/list/enabled")
+	@io.swagger.v3.oas.annotations.Operation(summary = "获取所有启用插件", description = "获取所有启用插件")
 	public R<List<PluginVO>> listEnabledPlugins() {
 		return R.ok(pluginService.listEnabledPlugins());
 	}
@@ -63,8 +63,8 @@ public class PluginController {
 	 * @param plugin {@link Plugin} 数据参数
 	 * @return {@code R<?>} 通用返回体
 	 */
-	@ApiOperation(value = "新增数据", notes = "新增数据")
 	@PostMapping
+	@io.swagger.v3.oas.annotations.Operation(summary = "新增数据", description = "新增数据")
 	public R<?> save(@RequestBody Plugin plugin) {
 		return pluginService.add(plugin) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增数据失败");
 	}
@@ -74,8 +74,8 @@ public class PluginController {
 	 * @param plugin {@link Plugin} 更新数据
 	 * @return {@code R<?>}通用返回体
 	 */
-	@ApiOperation(value = "更新数据", notes = "更新数据")
 	@PutMapping
+	@io.swagger.v3.oas.annotations.Operation(summary = "更新数据", description = "更新数据")
 	public R<?> updateById(@RequestBody Plugin plugin) {
 		return pluginService.edit(plugin) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
 	}
@@ -85,8 +85,8 @@ public class PluginController {
 	 * @param id {@code id} id
 	 * @return {@code R<?>} 通用返回体
 	 */
-	@ApiOperation(value = "根据id删除数据", notes = "根据id删除数据")
 	@DeleteMapping("/{id}")
+	@io.swagger.v3.oas.annotations.Operation(summary = "根据id删除数据", description = "根据id删除数据")
 	public R<?> removeById(@PathVariable Long id) {
 		return pluginService.del(id) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "根据id删除数据失败");
 	}

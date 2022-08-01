@@ -9,8 +9,9 @@ import com.relaxed.common.risk.model.qo.AbstractionQO;
 import com.relaxed.common.risk.model.vo.AbstractionVO;
 import com.relaxed.samples.risk.admin.model.domain.DataColumn;
 import com.relaxed.samples.risk.admin.service.AbstractionManageService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("abstraction")
-@Api(tags = "特征提取")
+@Tag(name = "特征提取")
 public class AbstractionController {
 
 	private final AbstractionManageService abstractionManageService;
@@ -36,8 +37,8 @@ public class AbstractionController {
 	 * 特征列提取
 	 * @param modelId {@link PageParam} 分页参数
 	 */
-	@ApiOperation(value = "特征提取列", notes = "特征提取列")
 	@GetMapping("/columns/{modelId}")
+	@io.swagger.v3.oas.annotations.Operation(summary = "特征提取列", description = "特征提取列")
 	public R<List<DataColumn>> dataColumns(@PathVariable Long modelId) {
 		return R.ok(abstractionManageService.selectColumns(modelId));
 	}
@@ -48,8 +49,8 @@ public class AbstractionController {
 	 * @param abstractionQO {@link AbstractionQO} 查询条件
 	 * @return @{code R<PageResult<AbstractionVO>>} 通用返回体
 	 */
-	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/page")
+	@io.swagger.v3.oas.annotations.Operation(summary = "分页查询", description = "分页查询")
 	public R<PageResult<AbstractionVO>> page(PageParam pageParam, AbstractionQO abstractionQO) {
 		return R.ok(abstractionManageService.selectByPage(pageParam, abstractionQO));
 	}
@@ -59,8 +60,8 @@ public class AbstractionController {
 	 * @param abstraction {@link Abstraction} 数据参数
 	 * @return {@code R<?>} 通用返回体
 	 */
-	@ApiOperation(value = "新增数据", notes = "新增数据")
 	@PostMapping
+	@io.swagger.v3.oas.annotations.Operation(summary = "新增数据", description = "新增数据")
 	public R<?> save(@RequestBody Abstraction abstraction) {
 		return abstractionManageService.add(abstraction) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增数据失败");
@@ -71,8 +72,8 @@ public class AbstractionController {
 	 * @param abstraction {@link Abstraction} 更新数据
 	 * @return {@code R<?>}通用返回体
 	 */
-	@ApiOperation(value = "更新数据", notes = "更新数据")
 	@PutMapping
+	@io.swagger.v3.oas.annotations.Operation(summary = "更新数据", description = "更新数据")
 	public R<?> updateById(@RequestBody Abstraction abstraction) {
 		return abstractionManageService.edit(abstraction) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "更新数据失败");
@@ -83,8 +84,8 @@ public class AbstractionController {
 	 * @param id {@code id} id
 	 * @return {@code R<?>} 通用返回体
 	 */
-	@ApiOperation(value = "根据id删除数据", notes = "根据id删除数据")
 	@DeleteMapping("/{id}")
+	@io.swagger.v3.oas.annotations.Operation(summary = "根据id删除数据", description = "根据id删除数据")
 	public R<?> removeById(@PathVariable Long id) {
 		return abstractionManageService.del(id) ? R.ok() : R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "根据id删除数据失败");
 	}
