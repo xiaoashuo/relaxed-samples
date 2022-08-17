@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Tag(name = "测试接口", description = "测试商品描述")
 @RequiredArgsConstructor
@@ -15,26 +17,38 @@ import java.math.BigDecimal;
 public class TestController {
 
 	/**
-	 * 测试保存
-	 * @param testObj
+	 * 测试查询
 	 * @return
 	 */
-	@Operation(summary = "测试保存", description = "保存数据不能为空")
-	@PostMapping
-	public R save(TestObj testObj) {
-
-		return R.ok(new TestObj(10, "测试", BigDecimal.ZERO));
+	@Operation(summary = "查询结果", description = "查询结果")
+	@GetMapping("/get/result")
+	public R<ResultObj> getResult() {
+		ResultObj resultObj = new ResultObj(10);
+		R<ResultObj> objectR = new R<>();
+		objectR.setCode(200);
+		objectR.setData(resultObj);
+		return objectR;
 	}
 
-	/**
-	 * 更新测试
-	 * @param testObj
-	 * @return
-	 */
-	@Operation(summary = "更新测试", description = "更新数据不能为空")
-	@PutMapping
-	public R update(@RequestBody TestObj testObj) {
-		return R.ok(new TestObj(11, "更新测试", BigDecimal.ZERO));
+	@Operation(summary = "查询测试", description = "查询测试")
+	@GetMapping("/get/test")
+	public R<TestObj> getTest() {
+		TestObj testObj = new TestObj(10, "sha", BigDecimal.ZERO);
+		R<TestObj> objectR = new R<>();
+		objectR.setCode(200);
+		objectR.setData(testObj);
+		return objectR;
 	}
+
+	// /**
+	// * 更新测试
+	// * @param testObj
+	// * @return
+	// */
+	// @Operation(summary = "更新测试", description = "更新数据不能为空")
+	// @PutMapping
+	// public Re update(@RequestBody TestObj testObj) {
+	// return Re.ok(new TestObj(11, "更新测试", BigDecimal.ZERO));
+	// }
 
 }

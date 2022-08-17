@@ -13,18 +13,12 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-@Schema(name = "测试对象")
-public class TestObj implements Serializable {
+@Schema(name = "结果对象")
+public class ResultObj implements Serializable {
 
-	private static final long serialVersionUID = 3299444707677885300L;
+	private static final long serialVersionUID = -8639657461150007772L;
 
-	@Schema(title = "用户")
-	private Integer userId;
-
-	@Schema(title = "姓名")
-	private String name;
-
-	@Schema(title = "钱")
-	private BigDecimal money;
+	@Schema(title = "用户id")
+	private Integer usernameId;
 
 }
