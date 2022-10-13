@@ -1,10 +1,13 @@
 package com.relaxed.samples.cache.service;
 
-import com.relaxed.common.cache.CacheManage;
-import com.relaxed.common.cache.annotation.CacheDel;
-import com.relaxed.common.cache.annotation.CachePut;
-import com.relaxed.common.cache.annotation.Cached;
+
+import cn.hutool.core.thread.ThreadUtil;
+import com.relaxed.common.redis.RedisHelper;
+import com.relaxed.common.redis.core.annotation.CacheDel;
+import com.relaxed.common.redis.core.annotation.CachePut;
+import com.relaxed.common.redis.core.annotation.Cached;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
@@ -20,24 +23,31 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class CacheServiceImpl implements CacheService {
 
-	private final CacheManage<String> cacheManage;
+
 
 	@Override
 	public String cacheSet(String key, String param, Long timeout) {
-		cacheManage.set(key, param, timeout, TimeUnit.SECONDS);
+		RedisHelper.set(key, param, timeout);
 		return "OK";
 	}
 
 	@Override
 	public String cacheGet(String key) {
-		String s = cacheManage.get(key);
+		String s = RedisHelper.get(key);
 		return s;
 	}
 
 	@Override
 	public String cacheDelete(String key) {
-		cacheManage.remove(key);
+		RedisHelper.del(key);
 		return "OK";
+	}
+
+	@Cached(prefix = "t", keyJoint = "#param")
+	@Override
+	public String lockRenewal(Integer param) {
+		ThreadUtil.safeSleep(2*60*1000);
+		return "success";
 	}
 
 	@Cached(keyJoint = "#param", condition = "#p0>1")

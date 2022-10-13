@@ -17,4 +17,11 @@ relaxed:
      delimiter: ':'
      null-value: "N_V"
      expire-time: 86400
-     locked-time-out: 1000
+     lockRenewal: false
+     watcher:
+       locked-time-out: 100
+       lock-time-unit: SECONDS
+
+logging:
+  level:
+    root: debug

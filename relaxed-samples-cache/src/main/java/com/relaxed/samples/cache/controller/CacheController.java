@@ -96,5 +96,10 @@ public class CacheController {
 	public String cacheNo(Integer param) {
 		return cacheService.noCache(param);
 	}
+	@GetMapping("/lock/renewal")
+	public String lockRenewal(Integer param) {
+		String s = cacheService.lockRenewal(param);
+		return s;
+	}
 
 }

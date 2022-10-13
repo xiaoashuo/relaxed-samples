@@ -99,4 +99,5 @@ public interface CacheService {
 	 */
 	String cacheDelete(String key);
 
+	String lockRenewal(Integer param);
 }
