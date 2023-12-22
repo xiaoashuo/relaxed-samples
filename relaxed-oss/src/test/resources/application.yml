@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: relaxed-oss
+
+  profiles:
+    active: local

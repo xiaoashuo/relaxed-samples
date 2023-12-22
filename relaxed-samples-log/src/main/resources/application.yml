@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: @artifactId@
+
+  profiles:
+    active: @profiles.active@
+relaxed:
+  log:
+    access:
+      enabled: true
+    operation:
+      enabled: true
+    biz:
+      enabled: true

@@ -1,0 +1,8 @@
+relaxed:
+  oss:
+    bucket: test-1258769891
+    accessKey: AKIDmNimZ6MPBgvta1C6j4AzWmlUx95lkX3J
+    accessSecret:
+    endpoint: https://cos.ap-shanghai.myqcloud.com
+    pathStyleAccess: false
+    region: ap-shanghai

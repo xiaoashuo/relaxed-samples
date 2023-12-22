@@ -20,13 +20,18 @@
     </properties>
     <modules>
       <module>relaxed-samples-base</module>
+      <module>relaxed-samples-log</module>
       <module>relaxed-samples-swagger</module>
       <module>relaxed-samples-codegen</module>
       <module>relaxed-samples-cache</module>
       <module>relaxed-samples-datascope</module>
-      <module>relaxed-samples-tenant</module>
-      <module>relaxed-samples-dynamic-datasource</module>
-      <module>relaxed-samples-risk</module>
+<!--      <module>relaxed-samples-tenant</module>-->
+      <module>relaxed-dynamic-datasource</module>
+<!--      <module>relaxed-samples-risk</module>-->
+      <module>relaxed-sftp</module>
+      <module>relaxed-oss</module>
+      <module>relaxed-xxljob</module>
+      <module>relaxed-mail</module>
     </modules>
 
     <dependencyManagement>

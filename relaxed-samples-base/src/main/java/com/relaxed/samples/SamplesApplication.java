@@ -1,8 +1,7 @@
 package com.relaxed.samples;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.relaxed.autoconfigure.log.annotation.EnableAccessLog;
-import com.relaxed.autoconfigure.log.annotation.EnableOperationLog;
+
 import com.relaxed.common.job.annotation.EnableXxlJob;
 import com.relaxed.common.xss.config.XssProperties;
 import com.relaxed.common.xss.json.XssStringJsonDeserializer;
@@ -26,8 +25,6 @@ import org.springframework.scheduling.annotation.Async;
  * @Version 1.0
  */
 @EnableXxlJob
-@EnableAccessLog
-@EnableOperationLog
 @SpringBootApplication(scanBasePackages = "com.relaxed")
 public class SamplesApplication {
 

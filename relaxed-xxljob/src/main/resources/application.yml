@@ -1,0 +1,9 @@
+spring:
+  main:
+    web-application-type: none
+  application:
+    name: relaxed-xxljob
+
+
+  profiles:
+    active: local

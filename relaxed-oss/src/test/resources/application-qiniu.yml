@@ -1,0 +1,10 @@
+relaxed:
+  oss:
+    bucket:
+    accessKey:
+    accessSecret:
+    endpoint: https://s3-cn-south-1.qiniucs.com
+    pathStyleAccess: false
+    region: cn-south-1
+
+
